@@ -33,8 +33,7 @@ family_label <- function(x) {
     inversegamma = "Inverse Gamma"
   )
 
-  label <- labels[[x]]
-  if (is.null(label)) tools::toTitleCase(x) else label
+  if (x %in% names(labels)) labels[[x]] else tools::toTitleCase(x)
 }
 
 cards <- lapply(families, function(family) {
