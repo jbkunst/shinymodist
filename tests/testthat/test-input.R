@@ -57,3 +57,11 @@ test_that("positive distribution parameters are validated", {
     "beta"
   )
 })
+
+
+test_that("height is optional and validated as a CSS unit", {
+  x <- modist_input("x", height = "180px")
+  expect_match(x$attribs$class, "shinymodist-height-fixed")
+  expect_match(x$attribs$style, "height:180px")
+  expect_silent(modist_input("y", height = "100%"))
+})
