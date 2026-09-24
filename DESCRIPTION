@@ -10,7 +10,7 @@ Description: Provides compact Shiny inputs for interactively shaping probability
     distributions. Wraps the JavaScript widgets from 'modist' and exposes their
     canonical distribution parameters as regular Shiny input values.
 License: MIT + file LICENSE
-URL: https://jbkunst.github.io/shinymodist/, https://github.com/jbkunst/shinymodist
+URL: https://jkunst.com/shinymodist/, https://github.com/jbkunst/shinymodist
 BugReports: https://github.com/jbkunst/shinymodist/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

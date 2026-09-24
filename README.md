@@ -83,10 +83,10 @@ The default `height = NULL` keeps the current aspect-ratio behavior.
 The pkgdown site exports the package examples with Shinylive, so they run
 entirely in the browser with webR:
 
-- [Basic input](https://jbkunst.github.io/shinymodist/demos/basic/)
-- [Distribution gallery](https://jbkunst.github.io/shinymodist/demos/gallery/)
-- [ROC curve](https://jbkunst.github.io/shinymodist/demos/roc/)
-- [Beta-Binomial](https://jbkunst.github.io/shinymodist/demos/bayes-beta-binomial/)
+- [Basic input](https://jkunst.com/shinymodist/demos/basic/)
+- [Distribution gallery](https://jkunst.com/shinymodist/demos/gallery/)
+- [ROC curve](https://jkunst.com/shinymodist/demos/roc/)
+- [Beta-Binomial](https://jkunst.com/shinymodist/demos/bayes-beta-binomial/)
 
 A rolling `dev` GitHub prerelease carries the WebAssembly library image for
 the current `main` branch. This lets the site exercise the latest package
@@ -116,7 +116,7 @@ The pkgdown workflow exports the runnable examples with Shinylive using the
 rolling WebAssembly `dev` release. Stable GitHub releases keep their own
 immutable WebAssembly library images.
 
-Documentation: <https://jbkunst.github.io/shinymodist/>
+Documentation: <https://jkunst.com/shinymodist/>
 
 ## Credits
 
