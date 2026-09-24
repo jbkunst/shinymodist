@@ -9,6 +9,10 @@ on:
 
 name: pkgdown
 
+concurrency:
+  group: pkgdown-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
