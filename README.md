@@ -78,6 +78,20 @@ modist_input("dist", height = "180px")
 
 The default `height = NULL` keeps the current aspect-ratio behavior.
 
+## Live demos
+
+The pkgdown site exports the package examples with Shinylive, so they run
+entirely in the browser with webR:
+
+- [Basic input](https://jbkunst.github.io/shinymodist/demos/basic/)
+- [Distribution gallery](https://jbkunst.github.io/shinymodist/demos/gallery/)
+- [ROC curve](https://jbkunst.github.io/shinymodist/demos/roc/)
+- [Beta-Binomial](https://jbkunst.github.io/shinymodist/demos/bayes-beta-binomial/)
+
+A rolling `dev` GitHub prerelease carries the WebAssembly library image for
+the current `main` branch. This lets the site exercise the latest package
+without requiring a local clone.
+
 ## Distribution families
 
 The wrapper exposes all distribution families bundled by modist:
@@ -98,8 +112,9 @@ push is checked with the r-wasm toolchain. Package releases also build a webR
 filesystem image so the package can be bundled by Shinylive without compiling
 R packages in the browser.
 
-Interactive Shinylive embeds in pkgdown can be added after the first package
-release is available as a WebAssembly binary.
+The pkgdown workflow exports the runnable examples with Shinylive using the
+rolling WebAssembly `dev` release. Stable GitHub releases keep their own
+immutable WebAssembly library images.
 
 Documentation: <https://jbkunst.github.io/shinymodist/>
 
