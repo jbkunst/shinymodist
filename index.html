@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">shinymodist</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9002</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,7 +36,7 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-demos" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Demos</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-demos">
 <li><a class="dropdown-item" href="articles/basic.html">Basic input</a></li>
-    <li><a class="dropdown-item" href="articles/styles.html">Styles and bslib</a></li>
+    <li><a class="dropdown-item" href="articles/gallery.html">Distribution gallery</a></li>
     <li><a class="dropdown-item" href="articles/roc.html">ROC curve</a></li>
     <li><a class="dropdown-item" href="articles/bayes-beta-binomial.html">Beta-Binomial</a></li>
   </ul>
@@ -115,9 +115,23 @@
 <p>Use <code>style = "modist"</code> to keep the original modist appearance and controls.</p>
 </div>
 <div class="section level2">
-<h2 id="scope">Scope<a class="anchor" aria-label="anchor" href="#scope"></a>
+<h2 id="distribution-families">Distribution families<a class="anchor" aria-label="anchor" href="#distribution-families"></a>
 </h2>
-<p>The first version focuses on Normal, Beta, and Gamma distributions. Examples cover basic usage, style/bslib integration, a ROC-curve application with base R calculations, and Beta-Binomial prior elicitation.</p>
+<p>The wrapper exposes all distribution families bundled by modist:</p>
+<ul>
+<li>Normal, Beta, Gamma and Student t</li>
+<li>Exponential, Half Normal and Log Normal</li>
+<li>Cauchy, Laplace and Logistic</li>
+<li>Weibull, Half Student t and Chi-squared</li>
+<li>Inverse Gamma and Kumaraswamy</li>
+</ul>
+<p>All families use the same <code><a href="reference/modist_input.html">modist_input()</a></code> API. See the distribution gallery for a compact grid plus narrow-sidebar examples.</p>
+</div>
+<div class="section level2">
+<h2 id="webassembly-and-shinylive">WebAssembly and Shinylive<a class="anchor" aria-label="anchor" href="#webassembly-and-shinylive"></a>
+</h2>
+<p>WebAssembly compatibility is treated as a supported deployment target. Every push is checked with the r-wasm toolchain. Package releases also build a webR filesystem image so the package can be bundled by Shinylive without compiling R packages in the browser.</p>
+<p>Interactive Shinylive embeds in pkgdown can be added after the first package release is available as a WebAssembly binary.</p>
 <p>Documentation: <a href="https://jbkunst.github.io/shinymodist/" class="uri">https://jbkunst.github.io/shinymodist/</a></p>
 </div>
 <div class="section level2">

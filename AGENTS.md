@@ -117,17 +117,15 @@ The component must adapt naturally to its container.
 
 Avoid fixed pixel widths in the public API.
 
-### Initial scope
+### Distribution families
 
-Start with:
+Once the common binding is stable, expose all distribution families
+already bundled by the pinned modist version. Adding an upstream family
+is cheap when it only requires a factory mapping, defaults, and
+validation.
 
-- Normal
-- Beta
-- Gamma
-
-Do not expand scope merely because upstream modist supports more
-families. Additional families can be added when the common
-implementation makes them cheap and they are tested.
+Do not implement new statistical families independently in shinymodist.
+New distribution mathematics belongs upstream in modist.
 
 ### Updating
 
@@ -179,11 +177,11 @@ concrete benefit. modist already provides standalone JavaScript.
 4.  Verify fixed domain.
 5.  Implement the minimal default appearance.
 6.  Verify style = “modist”.
-7.  Add Beta and Gamma.
+7.  Expose the remaining upstream modist families through the same
+    binding.
 8.  Test narrow sidebar and wide/card layouts.
 9.  Test plain Shiny and bslib.
 10. Keep examples and documentation small.
-11. Only then consider more distribution families.
 
 Avoid building infrastructure for roadmap items before it is needed.
 
@@ -198,10 +196,13 @@ Initial examples, in this order:
     - Minimal modist_input() usage.
     - Show the reactive input value.
     - Show update_modist_input().
-2.  styles
-    - Compare the default minimal style with style = “modist”.
-    - Demonstrate that minimal style inherits a bslib primary color.
-    - Show one simple override such as grid = TRUE.
+2.  gallery
+    - Show every supported upstream distribution in a compact grid.
+    - Use bslib so minimal style visibly inherits the theme primary
+      color.
+    - Include a narrow sidebar example and a style = “modist”
+      comparison.
+    - Use the responsive default rather than adding a height argument.
 3.  roc
     - Two Normal inputs representing positive and negative score
       distributions.
@@ -222,6 +223,21 @@ Initial examples, in this order:
 
 pkgdown may document these demos now. Shinylive embedding can be
 considered later once the package API is stable.
+
+## WebAssembly and Shinylive
+
+WebAssembly support is mandatory, not optional.
+
+- Every push and pull request should build the package with r-wasm.
+- GitHub releases should publish a webR filesystem image using the
+  official r-wasm actions.
+- Keep runtime dependencies compatible with webR where practical.
+- Shinylive cannot compile R packages from source in the browser; it
+  needs precompiled WebAssembly binaries.
+- Add Shinylive embeds to pkgdown only after the package’s WebAssembly
+  release path is working reliably.
+- Do not add compiled dependencies without checking their WebAssembly
+  support.
 
 ## Future roadmap
 

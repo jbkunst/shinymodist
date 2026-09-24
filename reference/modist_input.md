@@ -26,7 +26,7 @@ modist_input(
 
 - family:
 
-  Distribution family. Currently `"normal"`, `"beta"`, or `"gamma"`.
+  Distribution family supported by the bundled modist version.
 
 - value:
 

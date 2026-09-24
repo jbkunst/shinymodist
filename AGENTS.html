@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="index.html">shinymodist</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9002</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,7 +19,7 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-demos" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Demos</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-demos"><li><a class="dropdown-item" href="articles/basic.html">Basic input</a></li>
-    <li><a class="dropdown-item" href="articles/styles.html">Styles and bslib</a></li>
+    <li><a class="dropdown-item" href="articles/gallery.html">Distribution gallery</a></li>
     <li><a class="dropdown-item" href="articles/roc.html">ROC curve</a></li>
     <li><a class="dropdown-item" href="articles/bayes-beta-binomial.html">Beta-Binomial</a></li>
   </ul></li>
@@ -113,12 +113,9 @@
 <p>Avoid fixed pixel widths in the public API.</p>
 </div>
 <div class="section level3">
-<h3 id="initial-scope">Initial scope<a class="anchor" aria-label="anchor" href="#initial-scope"></a></h3>
-<p>Start with:</p>
-<ul><li>Normal</li>
-<li>Beta</li>
-<li>Gamma</li>
-</ul><p>Do not expand scope merely because upstream modist supports more families. Additional families can be added when the common implementation makes them cheap and they are tested.</p>
+<h3 id="distribution-families">Distribution families<a class="anchor" aria-label="anchor" href="#distribution-families"></a></h3>
+<p>Once the common binding is stable, expose all distribution families already bundled by the pinned modist version. Adding an upstream family is cheap when it only requires a factory mapping, defaults, and validation.</p>
+<p>Do not implement new statistical families independently in shinymodist. New distribution mathematics belongs upstream in modist.</p>
 </div>
 <div class="section level3">
 <h3 id="updating">Updating<a class="anchor" aria-label="anchor" href="#updating"></a></h3>
@@ -159,11 +156,10 @@
 <li>Verify fixed domain.</li>
 <li>Implement the minimal default appearance.</li>
 <li>Verify style = “modist”.</li>
-<li>Add Beta and Gamma.</li>
+<li>Expose the remaining upstream modist families through the same binding.</li>
 <li>Test narrow sidebar and wide/card layouts.</li>
 <li>Test plain Shiny and bslib.</li>
 <li>Keep examples and documentation small.</li>
-<li>Only then consider more distribution families.</li>
 </ol><p>Avoid building infrastructure for roadmap items before it is needed.</p>
 </div>
 <div class="section level2">
@@ -175,10 +171,11 @@
 <li>Show the reactive input value.</li>
 <li>Show update_modist_input().</li>
 </ul></li>
-<li>styles
-<ul><li>Compare the default minimal style with style = “modist”.</li>
-<li>Demonstrate that minimal style inherits a bslib primary color.</li>
-<li>Show one simple override such as grid = TRUE.</li>
+<li>gallery
+<ul><li>Show every supported upstream distribution in a compact grid.</li>
+<li>Use bslib so minimal style visibly inherits the theme primary color.</li>
+<li>Include a narrow sidebar example and a style = “modist” comparison.</li>
+<li>Use the responsive default rather than adding a height argument.</li>
 </ul></li>
 <li>roc
 <ul><li>Two Normal inputs representing positive and negative score distributions.</li>
@@ -196,6 +193,16 @@
 </ul></li>
 </ol><p>pkgdown may document these demos now. Shinylive embedding can be considered later once the package API is stable.</p>
 </div>
+<div class="section level2">
+<h2 id="webassembly-and-shinylive">WebAssembly and Shinylive<a class="anchor" aria-label="anchor" href="#webassembly-and-shinylive"></a></h2>
+<p>WebAssembly support is mandatory, not optional.</p>
+<ul><li>Every push and pull request should build the package with r-wasm.</li>
+<li>GitHub releases should publish a webR filesystem image using the official r-wasm actions.</li>
+<li>Keep runtime dependencies compatible with webR where practical.</li>
+<li>Shinylive cannot compile R packages from source in the browser; it needs precompiled WebAssembly binaries.</li>
+<li>Add Shinylive embeds to pkgdown only after the package’s WebAssembly release path is working reliably.</li>
+<li>Do not add compiled dependencies without checking their WebAssembly support.</li>
+</ul></div>
 <div class="section level2">
 <h2 id="future-roadmap">Future roadmap<a class="anchor" aria-label="anchor" href="#future-roadmap"></a></h2>
 <div class="section level3">
