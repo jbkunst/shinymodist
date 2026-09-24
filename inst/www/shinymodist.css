@@ -9,6 +9,18 @@
   min-width: 0;
 }
 
+.shinymodist-input.shinymodist-height-fixed,
+.shinymodist-input.shinymodist-height-fixed .shinymodist-mount,
+.shinymodist-input.shinymodist-height-fixed .mroot {
+  height: 100%;
+}
+
+.shinymodist-input.shinymodist-height-fixed .mroot svg {
+  width: 100% !important;
+  height: 100% !important;
+  aspect-ratio: auto !important;
+}
+
 /*
  * Minimal is the Shiny-native default: quiet, compact, and themed by the
  * surrounding application. The original modist palette remains available
@@ -55,8 +67,8 @@
 }
 
 .shinymodist-input[data-style="minimal"] .mtick {
-  font-size: 11px;
-  opacity: 0.65;
+  font-size: 13px;
+  opacity: 0.68;
 }
 
 .shinymodist-input[data-style="minimal"] .mline {
@@ -71,7 +83,7 @@
 }
 
 .shinymodist-input[data-style="minimal"] .mlabeltxt {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 

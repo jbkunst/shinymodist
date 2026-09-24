@@ -9,7 +9,8 @@ modist_input(
   domain = NULL,
   style = c("minimal", "modist"),
   ticks = NULL,
-  grid = NULL
+  grid = NULL,
+  height = NULL
 )
 }
 \arguments{
@@ -20,6 +21,7 @@ modist_input(
 \item{style}{Visual preset: \code{"minimal"} or \code{"modist"}.}
 \item{ticks}{Optional logical. \code{NULL} inherits the selected style.}
 \item{grid}{Optional logical. \code{NULL} inherits the selected style.}
+\item{height}{Optional CSS height. \code{NULL} keeps the default responsive aspect-ratio behavior.}
 }
 \value{A Shiny input tag.}
 \description{

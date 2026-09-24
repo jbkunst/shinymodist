@@ -65,6 +65,16 @@ ui <- bslib::page_sidebar(
       domain = c(-4, 4)
     ),
     hr(),
+    h5("Fixed height"),
+    p("Optional height for constrained layouts."),
+    modist_input(
+      "sidebar_fixed",
+      family = "normal",
+      value = list(mu = 0, sigma = 1),
+      domain = c(-4, 4),
+      height = "180px"
+    ),
+    hr(),
     h5("Original modist"),
     modist_input(
       "sidebar_modist",

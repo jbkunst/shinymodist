@@ -13,6 +13,9 @@
 #' @param style Visual preset: `"minimal"` (default) or `"modist"`.
 #' @param ticks Optional logical. `NULL` inherits the selected style.
 #' @param grid Optional logical. `NULL` inherits the selected style.
+#' @param height Optional CSS height. `NULL` keeps the default responsive
+#'   aspect-ratio behavior. Values such as `"180px"`, `"12rem"`, or
+#'   `"100%"` are accepted.
 #'
 #' @return A Shiny input tag.
 #' @export
@@ -39,7 +42,8 @@ modist_input <- function(
   domain = NULL,
   style = c("minimal", "modist"),
   ticks = NULL,
-  grid = NULL
+  grid = NULL,
+  height = NULL
 ) {
   family <- match.arg(family, names(modist_families()))
   style <- match.arg(style)
@@ -48,6 +52,7 @@ modist_input <- function(
   domain <- normalize_modist_domain(domain)
   ticks <- normalize_optional_flag(ticks, "ticks")
   grid <- normalize_optional_flag(grid, "grid")
+  height <- normalize_modist_height(height)
 
   config <- list(
     family = family,
@@ -60,8 +65,12 @@ modist_input <- function(
 
   tag <- htmltools::div(
     id = input_id,
-    class = "shinymodist-input",
+    class = paste(
+      "shinymodist-input",
+      if (!is.null(height)) "shinymodist-height-fixed" else NULL
+    ),
     role = "group",
+    style = if (is.null(height)) NULL else htmltools::css(height = height),
     `data-shinymodist-config` = jsonlite::toJSON(
       config,
       auto_unbox = TRUE,
@@ -101,7 +110,7 @@ update_modist_input <- function(
 shinymodist_dependency <- function() {
   htmltools::htmlDependency(
     name = "shinymodist",
-    version = "0.0.0.9002",
+    version = "0.0.0.9003",
     src = c(file = "www"),
     package = "shinymodist",
     script = c("modist.js", "shinymodist.js"),
@@ -237,6 +246,14 @@ normalize_modist_domain <- function(domain) {
   }
 
   as.numeric(domain)
+}
+
+normalize_modist_height <- function(height) {
+  if (is.null(height)) {
+    return(NULL)
+  }
+
+  htmltools::validateCssUnit(height)
 }
 
 normalize_optional_flag <- function(x, name) {
