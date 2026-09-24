@@ -16,13 +16,19 @@ pak::pak("jbkunst/shinymodist")
 library(shiny)
 library(shinymodist)
 
-ui <- fluidPage(
-  modist_input(
-    "dist",
-    family = "normal",
-    value = list(mu = 0, sigma = 1)
+ui <- bslib::page_sidebar(
+  title = "Basic shinymodist input",
+  sidebar = bslib::sidebar(
+    modist_input(
+      "dist",
+      family = "normal",
+      value = list(mu = 0, sigma = 1)
+    )
   ),
-  verbatimTextOutput("value")
+  bslib::card(
+    bslib::card_header("Reactive value"),
+    verbatimTextOutput("value")
+  )
 )
 
 server <- function(input, output, session) {

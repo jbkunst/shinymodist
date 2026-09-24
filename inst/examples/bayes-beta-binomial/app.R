@@ -1,24 +1,30 @@
 library(shiny)
 library(shinymodist)
 
-ui <- fluidPage(
-  h3("Beta-Binomial prior elicitation"),
-  fluidRow(
-    column(
-      width = 4,
-      modist_input(
-        "prior",
-        family = "beta",
-        value = list(alpha = 2, beta = 2)
-      ),
-      sliderInput("n", "Trials", min = 1, max = 100, value = 20),
-      sliderInput("x", "Successes", min = 0, max = 20, value = 12),
-      verbatimTextOutput("posterior")
+if (!requireNamespace("bslib", quietly = TRUE)) {
+  stop("Install bslib to run this example.")
+}
+
+ui <- bslib::page_sidebar(
+  title = "Beta-Binomial prior elicitation",
+  sidebar = bslib::sidebar(
+    width = 320,
+    modist_input(
+      "prior",
+      family = "beta",
+      value = list(alpha = 2, beta = 2)
     ),
-    column(
-      width = 8,
-      plotOutput("plot")
+    sliderInput("n", "Trials", min = 1, max = 100, value = 20),
+    sliderInput("x", "Successes", min = 0, max = 20, value = 12),
+    bslib::card(
+      fill = FALSE,
+      bslib::card_header("Posterior parameters"),
+      verbatimTextOutput("posterior")
     )
+  ),
+  bslib::card(
+    bslib::card_header("Prior and posterior"),
+    plotOutput("plot")
   )
 )
 
