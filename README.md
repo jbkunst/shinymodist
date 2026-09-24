@@ -55,9 +55,23 @@ modist_input(
 
 Server-side updates use `update_modist_input()`.
 
+## Styles and bslib
+
+The default `style = "minimal"` is intentionally quiet: no grid or toolbar,
+and its visual accents inherit `--bs-primary` when used inside a bslib theme.
+
+```r
+bslib::page_fluid(
+  theme = bslib::bs_theme(primary = "#6f42c1"),
+  modist_input("dist")
+)
+```
+
+Use `style = "modist"` to keep the original modist appearance and controls.
+
 ## Scope
 
-The first version focuses on Normal, Beta, and Gamma distributions. Examples cover basic usage, a ROC-curve application with base R calculations, and Beta-Binomial prior elicitation.
+The first version focuses on Normal, Beta, and Gamma distributions. Examples cover basic usage, style/bslib integration, a ROC-curve application with base R calculations, and Beta-Binomial prior elicitation.
 
 Documentation: <https://jbkunst.github.io/shinymodist/>
 

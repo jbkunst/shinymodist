@@ -13,6 +13,8 @@ navbar:
       menu:
         - text: Basic input
           href: articles/basic.html
+        - text: Styles and bslib
+          href: articles/styles.html
         - text: ROC curve
           href: articles/roc.html
         - text: Beta-Binomial
@@ -28,5 +30,6 @@ articles:
   - title: Demos
     contents:
       - basic
+      - styles
       - roc
       - bayes-beta-binomial

@@ -83,8 +83,17 @@
 
     subscribe: function (el, callback) {
       window.jQuery(el).on("shinymodist:change.shinymodist", function () {
-        callback();
+        if (!el._shinymodistServerUpdate) {
+          callback(true);
+        }
       });
+    },
+
+    getRatePolicy: function () {
+      return {
+        policy: "debounce",
+        delay: 250,
+      };
     },
 
     unsubscribe: function (el) {
@@ -94,7 +103,16 @@
     receiveMessage: function (el, data) {
       mount(el);
       if (data.value) {
-        el._shinymodist.set(data.value);
+        el._shinymodistServerUpdate = true;
+        try {
+          el._shinymodist.set(data.value);
+          el._shinymodistValue = {
+            family: el._shinymodistFamily,
+            ...el._shinymodist.params,
+          };
+        } finally {
+          el._shinymodistServerUpdate = false;
+        }
       }
     },
   });
