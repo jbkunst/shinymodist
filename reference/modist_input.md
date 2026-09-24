@@ -14,7 +14,8 @@ modist_input(
   domain = NULL,
   style = c("minimal", "modist"),
   ticks = NULL,
-  grid = NULL
+  grid = NULL,
+  height = NULL
 )
 ```
 
@@ -48,6 +49,11 @@ modist_input(
 - grid:
 
   Optional logical. `NULL` inherits the selected style.
+
+- height:
+
+  Optional CSS height. `NULL` keeps the default responsive aspect-ratio
+  behavior.
 
 ## Value
 

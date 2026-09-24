@@ -115,6 +115,11 @@ Do not require a sidebar or size mode.
 
 The component must adapt naturally to its container.
 
+`height = NULL` is the default and preserves the responsive aspect
+ratio. An explicit CSS `height` is allowed as a layout escape hatch for
+constrained containers. Do not add width/size presets or font-size
+arguments unless a real use case requires them.
+
 Avoid fixed pixel widths in the public API.
 
 ### Distribution families

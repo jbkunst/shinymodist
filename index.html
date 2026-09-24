@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">shinymodist</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9002</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9003</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -113,6 +113,10 @@
 <span>  <span class="fu"><a href="reference/modist_input.html">modist_input</a></span><span class="op">(</span><span class="st">"dist"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>Use <code>style = "modist"</code> to keep the original modist appearance and controls.</p>
+<p>The input is responsive by default. A fixed CSS height is available only when the surrounding layout needs it:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/modist_input.html">modist_input</a></span><span class="op">(</span><span class="st">"dist"</span>, height <span class="op">=</span> <span class="st">"180px"</span><span class="op">)</span></span></code></pre></div>
+<p>The default <code>height = NULL</code> keeps the current aspect-ratio behavior.</p>
 </div>
 <div class="section level2">
 <h2 id="distribution-families">Distribution families<a class="anchor" aria-label="anchor" href="#distribution-families"></a>

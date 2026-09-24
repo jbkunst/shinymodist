@@ -82,6 +82,16 @@ bslib::page_fluid(
 Use `style = "modist"` to keep the original modist appearance and
 controls.
 
+The input is responsive by default. A fixed CSS height is available only
+when the surrounding layout needs it:
+
+``` r
+
+modist_input("dist", height = "180px")
+```
+
+The default `height = NULL` keeps the current aspect-ratio behavior.
+
 ## Distribution families
 
 The wrapper exposes all distribution families bundled by modist:

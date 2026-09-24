@@ -24,8 +24,18 @@ shiny::runApp(
 )
 ```
 
-The component does not expose a height argument in the initial API. Its
-SVG is responsive and preserves its aspect ratio, so narrower containers
-naturally produce a shorter input. A dedicated height control should
-only be added if a real layout requires behavior that container width
-cannot provide.
+By default, height remains responsive to the available width. For
+constrained layouts, an explicit CSS height can be supplied:
+
+``` r
+
+modist_input(
+  "dist",
+  family = "normal",
+  height = "180px"
+)
+```
+
+The default remains unchanged when `height = NULL`. Text sizing is
+intentionally opinionated and not exposed as R arguments; advanced
+applications can override the package CSS if needed.
