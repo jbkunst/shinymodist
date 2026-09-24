@@ -2,6 +2,7 @@
   width: 100%;
   min-width: 0;
   color: var(--bs-body-color, inherit);
+  container-type: inline-size;
 }
 
 .shinymodist-mount {
@@ -117,4 +118,41 @@
 .shinymodist-input[data-fixed-domain="true"] .mfitxt {
   display: none !important;
   pointer-events: none !important;
+}
+
+
+/*
+ * SVG text lives in the 660px modist viewBox, so it would otherwise become
+ * unreadably small when the whole widget is scaled into a sidebar/card.
+ * Container queries keep on-screen labels roughly legible without exposing
+ * font-size knobs in the R API.
+ */
+@container (max-width: 260px) {
+  .shinymodist-input[data-style="minimal"] .mtick {
+    font-size: 30px;
+  }
+
+  .shinymodist-input[data-style="minimal"] .mlabeltxt {
+    font-size: 38px;
+  }
+}
+
+@container (min-width: 261px) and (max-width: 360px) {
+  .shinymodist-input[data-style="minimal"] .mtick {
+    font-size: 24px;
+  }
+
+  .shinymodist-input[data-style="minimal"] .mlabeltxt {
+    font-size: 30px;
+  }
+}
+
+@container (min-width: 361px) and (max-width: 520px) {
+  .shinymodist-input[data-style="minimal"] .mtick {
+    font-size: 18px;
+  }
+
+  .shinymodist-input[data-style="minimal"] .mlabeltxt {
+    font-size: 20px;
+  }
 }

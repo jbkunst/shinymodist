@@ -86,7 +86,7 @@ ui <- bslib::page_sidebar(
   ),
   p(
     "All upstream modist families using the default minimal style. ",
-    "The component height follows its available width."
+    "Labels adapt to narrow containers; the component height follows its available width."
   ),
   do.call(
     bslib::layout_columns,

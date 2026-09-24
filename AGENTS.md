@@ -57,6 +57,10 @@ The default appearance must be compact and low-noise:
 
 Do not expose cosmetic options merely because they are possible.
 
+Container-responsive label sizing is an internal design responsibility. SVG
+labels must remain readable in narrow cards/sidebars without adding public
+font-size arguments.
+
 ### Preserve access to the original modist experience
 
 Support two high-level styles:

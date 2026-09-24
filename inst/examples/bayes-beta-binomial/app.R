@@ -34,11 +34,13 @@ server <- function(input, output, session) {
 
   posterior <- reactive({
     prior <- input$prior
-    req(prior)
+    req(prior, input$n, input$x)
+
+    x <- min(input$x, input$n)
 
     list(
-      alpha = prior$alpha + input$x,
-      beta = prior$beta + input$n - input$x
+      alpha = prior$alpha + x,
+      beta = prior$beta + input$n - x
     )
   })
 
@@ -55,9 +57,12 @@ server <- function(input, output, session) {
     post <- posterior()
     req(prior, post)
 
-    p <- seq(0, 1, length.out = 400)
+    # Avoid exact 0/1: Beta densities may be infinite at the boundaries
+    # when alpha or beta is below 1.
+    p <- seq(0.001, 0.999, length.out = 500)
     y_prior <- dbeta(p, prior$alpha, prior$beta)
     y_post <- dbeta(p, post$alpha, post$beta)
+    y_max <- max(c(y_prior, y_post)[is.finite(c(y_prior, y_post))])
 
     plot(
       p, y_prior,
@@ -65,7 +70,7 @@ server <- function(input, output, session) {
       lwd = 2,
       xlab = "Probability",
       ylab = "Density",
-      ylim = c(0, max(y_prior, y_post))
+      ylim = c(0, y_max)
     )
     lines(p, y_post, lwd = 2, lty = 2)
     legend(
