@@ -112,9 +112,23 @@ jobs:
             )
           }
 
-      - name: Deploy site
+      - name: Deploy built site
         if: github.event_name != 'pull_request'
         run: |
+          set -euo pipefail
+
           git config --local user.name "$GITHUB_ACTOR"
           git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          Rscript -e 'pkgdown::deploy_to_branch(new_process = FALSE)'
+
+          git fetch origin gh-pages
+          rm -rf _gh-pages
+          git worktree add --track -B gh-pages _gh-pages origin/gh-pages
+
+          find _gh-pages -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -a docs/. _gh-pages/
+          touch _gh-pages/.nojekyll
+
+          cd _gh-pages
+          git add -A
+          git commit --allow-empty -m "Built site with Shinylive demos: ${GITHUB_SHA::7}"
+          git push --force origin HEAD:gh-pages
