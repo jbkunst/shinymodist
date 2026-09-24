@@ -1,0 +1,31 @@
+Package: shinymodist
+Title: Interactive Distribution Inputs for Shiny
+Version: 0.0.0.9000
+Authors@R: c(
+    person("Joshua", "Kunst", email = "jbkunst@gmail.com", role = c("aut", "cre")),
+    person("William", "Dean", role = c("ctb", "cph"),
+           comment = "Author of the bundled modist JavaScript library")
+    )
+Description: Provides compact Shiny inputs for interactively shaping probability
+    distributions. Wraps the JavaScript widgets from 'modist' and exposes their
+    canonical distribution parameters as regular Shiny input values.
+License: MIT + file LICENSE
+URL: https://jbkunst.github.io/shinymodist/, https://github.com/jbkunst/shinymodist
+BugReports: https://github.com/jbkunst/shinymodist/issues
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+Depends:
+    R (>= 4.1.0)
+Imports:
+    htmltools,
+    jsonlite,
+    shiny
+Suggests:
+    bslib,
+    knitr,
+    pkgdown,
+    rmarkdown,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+VignetteBuilder: knitr

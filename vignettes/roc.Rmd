@@ -1,0 +1,39 @@
+---
+title: "ROC curve"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ROC curve}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+This demo uses two Normal inputs on the same fixed domain. The common scale
+makes changes in location and spread directly comparable.
+
+The statistical calculations are base R: `dnorm()` for the score densities
+and `pnorm()` for the ROC curve.
+
+```{r, eval=FALSE}
+score_domain <- c(-5, 5)
+
+modist_input(
+  "positive",
+  value = list(mu = 1, sigma = 1),
+  domain = score_domain
+)
+
+modist_input(
+  "negative",
+  value = list(mu = -1, sigma = 1),
+  domain = score_domain
+)
+```
+
+Run the complete sidebar example with:
+
+```{r, eval=FALSE}
+shiny::runApp(system.file("examples/roc", package = "shinymodist"))
+```
+
+The example uses `bslib` only for layout. The probability calculations and
+plots remain base R.

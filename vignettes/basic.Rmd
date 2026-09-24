@@ -1,0 +1,45 @@
+---
+title: "Basic input"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Basic input}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+`shinymodist` exposes an interactive distribution as a regular Shiny input.
+
+```{r, eval=FALSE}
+library(shiny)
+library(shinymodist)
+
+ui <- fluidPage(
+  modist_input(
+    "dist",
+    family = "normal",
+    value = list(mu = 0, sigma = 1)
+  ),
+  verbatimTextOutput("value")
+)
+
+server <- function(input, output, session) {
+  output$value <- renderPrint(input$dist)
+}
+
+shinyApp(ui, server)
+```
+
+The complete runnable app ships with the package:
+
+```{r, eval=FALSE}
+shiny::runApp(system.file("examples/basic", package = "shinymodist"))
+```
+
+Server-side changes use `update_modist_input()`:
+
+```{r, eval=FALSE}
+update_modist_input(
+  "dist",
+  value = list(mu = 1, sigma = 2)
+)
+```

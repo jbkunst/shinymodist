@@ -1,0 +1,32 @@
+url: https://jbkunst.github.io/shinymodist/
+
+template:
+  bootstrap: 5
+
+navbar:
+  structure:
+    left: [intro, reference, articles]
+    right: [search, github]
+  components:
+    articles:
+      text: Demos
+      menu:
+        - text: Basic input
+          href: articles/basic.html
+        - text: ROC curve
+          href: articles/roc.html
+        - text: Beta-Binomial
+          href: articles/bayes-beta-binomial.html
+
+reference:
+  - title: Shiny inputs
+    contents:
+      - modist_input
+      - update_modist_input
+
+articles:
+  - title: Demos
+    contents:
+      - basic
+      - roc
+      - bayes-beta-binomial

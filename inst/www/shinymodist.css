@@ -1,0 +1,83 @@
+.shinymodist-input {
+  width: 100%;
+  min-width: 0;
+  color: var(--bs-body-color, inherit);
+}
+
+.shinymodist-mount {
+  width: 100%;
+  min-width: 0;
+}
+
+.shinymodist-input[data-style="minimal"] {
+  --m-acc: var(--bs-primary, #0891b2);
+  --m-border: var(--bs-border-color, #cbd5e1);
+  --m-card: var(--bs-tertiary-bg, #eef2f7);
+  --m-grid: var(--bs-border-color, #e5e7eb);
+  --m-mut: var(--bs-secondary-color, #6b7280);
+}
+
+.shinymodist-input[data-style="minimal"] .mroot,
+.shinymodist-input[data-style="minimal"] .mroot svg text {
+  font-family: var(--bs-body-font-family, ui-sans-serif, system-ui, sans-serif);
+}
+
+.shinymodist-input[data-style="minimal"] .mgrid,
+.shinymodist-input[data-style="minimal"] .mgridm {
+  display: none;
+}
+
+.shinymodist-input[data-style="minimal"] .mzoombtn,
+.shinymodist-input[data-style="minimal"] .mzoomtxt,
+.shinymodist-input[data-style="minimal"] .mfitbtn,
+.shinymodist-input[data-style="minimal"] .mfitxt,
+.shinymodist-input[data-style="minimal"] .mresetbtn,
+.shinymodist-input[data-style="minimal"] .mresetxt,
+.shinymodist-input[data-style="minimal"] .mpantip {
+  display: none;
+}
+
+.shinymodist-input[data-style="minimal"] .mpan {
+  pointer-events: none;
+}
+
+.shinymodist-input[data-style="minimal"] .maxis {
+  opacity: 0.55;
+}
+
+.shinymodist-input[data-style="minimal"] .mtick {
+  font-size: 11px;
+  opacity: 0.72;
+}
+
+.shinymodist-input[data-style="minimal"] .mline {
+  stroke-width: 2.75;
+}
+
+.shinymodist-input[data-grid="false"] .mgrid,
+.shinymodist-input[data-grid="false"] .mgridm {
+  display: none !important;
+}
+
+.shinymodist-input[data-grid="true"] .mgrid,
+.shinymodist-input[data-grid="true"] .mgridm {
+  display: unset !important;
+}
+
+.shinymodist-input[data-ticks="false"] .mtick {
+  display: none !important;
+}
+
+.shinymodist-input[data-ticks="true"] .mtick {
+  display: unset !important;
+}
+
+.shinymodist-input[data-fixed-domain="true"] .mpan,
+.shinymodist-input[data-fixed-domain="true"] .mpantip,
+.shinymodist-input[data-fixed-domain="true"] .mzoombtn,
+.shinymodist-input[data-fixed-domain="true"] .mzoomtxt,
+.shinymodist-input[data-fixed-domain="true"] .mfitbtn,
+.shinymodist-input[data-fixed-domain="true"] .mfitxt {
+  display: none !important;
+  pointer-events: none !important;
+}
