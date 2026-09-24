@@ -38,6 +38,10 @@ family_label <- function(x) {
 
 cards <- lapply(families, function(family) {
   bslib::card(
+    fill = FALSE,
+    wrapper = function(...) {
+      bslib::card_body(..., fillable = FALSE, fill = FALSE)
+    },
     bslib::card_header(family_label(family)),
     modist_input(
       paste0("dist_", family),
