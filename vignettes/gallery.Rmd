@@ -1,0 +1,34 @@
+---
+title: "Distribution gallery"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Distribution gallery}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+`shinymodist` exposes the distribution families provided by the bundled
+modist version through the same input API.
+
+The gallery is primarily a visual and responsive QA example: it places all
+families in a grid and also shows a Normal input in a narrow 300 px sidebar.
+
+```{r, eval=FALSE}
+modist_input("normal", family = "normal")
+modist_input("beta", family = "beta")
+modist_input("studentt", family = "studentt")
+modist_input("weibull", family = "weibull")
+```
+
+Run the complete gallery with:
+
+```{r, eval=FALSE}
+shiny::runApp(
+  system.file("examples/gallery", package = "shinymodist")
+)
+```
+
+The component does not expose a height argument in the initial API. Its SVG is
+responsive and preserves its aspect ratio, so narrower containers naturally
+produce a shorter input. A dedicated height control should only be added if a
+real layout requires behavior that container width cannot provide.

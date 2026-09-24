@@ -1,0 +1,14 @@
+# Build a webR package library image for Shinylive/webR consumers.
+# Derived from https://github.com/r-wasm/actions/tree/v3/examples
+on:
+  release:
+    types: [published]
+
+name: Build WebAssembly release
+
+jobs:
+  release-file-system-image:
+    uses: r-wasm/actions/.github/workflows/release-file-system-image.yml@v3
+    permissions:
+      contents: write
+      repository-projects: read

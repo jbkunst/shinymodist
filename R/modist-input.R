@@ -5,8 +5,7 @@
 #' canonical parameters for that family.
 #'
 #' @param input_id Shiny input id.
-#' @param family Distribution family. Currently one of `"normal"`,
-#'   `"beta"`, or `"gamma"`.
+#' @param family Distribution family supported by modist.
 #' @param value Named list of initial distribution parameters. Missing
 #'   parameters use the family defaults.
 #' @param domain Optional numeric vector of length two giving a fixed visible
@@ -42,7 +41,7 @@ modist_input <- function(
   ticks = NULL,
   grid = NULL
 ) {
-  family <- match.arg(family, c("normal", "beta", "gamma"))
+  family <- match.arg(family, names(modist_families()))
   style <- match.arg(style)
 
   value <- normalize_modist_value(family, value)
@@ -102,7 +101,7 @@ update_modist_input <- function(
 shinymodist_dependency <- function() {
   htmltools::htmlDependency(
     name = "shinymodist",
-    version = "0.0.0.9001",
+    version = "0.0.0.9002",
     src = c(file = "www"),
     package = "shinymodist",
     script = c("modist.js", "shinymodist.js"),
@@ -110,17 +109,74 @@ shinymodist_dependency <- function() {
   )
 }
 
-modist_defaults <- function(family) {
-  switch(
-    family,
-    normal = list(mu = 0, sigma = 1),
-    beta = list(alpha = 2, beta = 2),
-    gamma = list(alpha = 2, beta = 2)
+modist_families <- function() {
+  list(
+    normal = list(
+      defaults = list(mu = 0, sigma = 1),
+      positive = "sigma"
+    ),
+    beta = list(
+      defaults = list(alpha = 2, beta = 2),
+      positive = c("alpha", "beta")
+    ),
+    gamma = list(
+      defaults = list(alpha = 2, beta = 2),
+      positive = c("alpha", "beta")
+    ),
+    studentt = list(
+      defaults = list(mu = 0, sigma = 1, nu = 5),
+      positive = c("sigma", "nu")
+    ),
+    exponential = list(
+      defaults = list(lam = 1),
+      positive = "lam"
+    ),
+    halfnormal = list(
+      defaults = list(sigma = 1),
+      positive = "sigma"
+    ),
+    lognormal = list(
+      defaults = list(mu = 0, sigma = 1),
+      positive = "sigma"
+    ),
+    cauchy = list(
+      defaults = list(alpha = 0, beta = 1),
+      positive = "beta"
+    ),
+    laplace = list(
+      defaults = list(mu = 0, b = 1),
+      positive = "b"
+    ),
+    logistic = list(
+      defaults = list(mu = 0, s = 1),
+      positive = "s"
+    ),
+    weibull = list(
+      defaults = list(alpha = 2, beta = 1),
+      positive = c("alpha", "beta")
+    ),
+    halfstudentt = list(
+      defaults = list(nu = 5, sigma = 1),
+      positive = c("nu", "sigma")
+    ),
+    chisquared = list(
+      defaults = list(nu = 3),
+      positive = "nu"
+    ),
+    inversegamma = list(
+      defaults = list(alpha = 3, beta = 1),
+      positive = c("alpha", "beta")
+    ),
+    kumaraswamy = list(
+      defaults = list(a = 2, b = 2),
+      positive = c("a", "b")
+    )
   )
 }
 
 normalize_modist_value <- function(family, value) {
-  defaults <- modist_defaults(family)
+  spec <- modist_families()[[family]]
+  defaults <- spec$defaults
 
   if (is.null(value)) {
     return(defaults)
@@ -143,21 +199,25 @@ normalize_modist_value <- function(family, value) {
     )
   }
 
-  for (name in names(value)) {
-    x <- value[[name]]
-    if (!is.numeric(x) || length(x) != 1 || !is.finite(x)) {
-      stop(sprintf("value$%s must be one finite number.", name), call. = FALSE)
-    }
-  }
-
+  validate_numeric_params(value)
   out <- utils::modifyList(defaults, value)
 
-  if (family == "normal" && out$sigma <= 0) {
-    stop("Normal sigma must be greater than 0.", call. = FALSE)
-  }
+  bad_positive <- spec$positive[vapply(
+    spec$positive,
+    function(name) out[[name]] <= 0,
+    logical(1)
+  )]
 
-  if (family %in% c("beta", "gamma") && any(unlist(out) <= 0)) {
-    stop(sprintf("%s parameters must be greater than 0.", tools::toTitleCase(family)), call. = FALSE)
+  if (length(bad_positive)) {
+    stop(
+      sprintf(
+        "%s parameter%s must be greater than 0: %s.",
+        family,
+        if (length(bad_positive) == 1) "" else "s",
+        paste(bad_positive, collapse = ", ")
+      ),
+      call. = FALSE
+    )
   }
 
   out
@@ -196,6 +256,11 @@ validate_update_value <- function(value) {
     stop("value must be a named list.", call. = FALSE)
   }
 
+  validate_numeric_params(value)
+  invisible(value)
+}
+
+validate_numeric_params <- function(value) {
   for (name in names(value)) {
     x <- value[[name]]
     if (!is.numeric(x) || length(x) != 1 || !is.finite(x)) {

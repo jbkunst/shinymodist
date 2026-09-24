@@ -18,10 +18,17 @@ test_that("normal input carries initial configuration", {
   expect_equal(unlist(config$domain), c(-5, 5))
 })
 
-test_that("family defaults are simple and stable", {
-  expect_silent(modist_input("normal"))
-  expect_silent(modist_input("beta", family = "beta"))
-  expect_silent(modist_input("gamma", family = "gamma"))
+test_that("all bundled modist families are accepted", {
+  families <- c(
+    "normal", "beta", "gamma", "studentt", "exponential",
+    "halfnormal", "lognormal", "cauchy", "laplace", "logistic",
+    "weibull", "halfstudentt", "chisquared", "inversegamma",
+    "kumaraswamy"
+  )
+
+  for (family in families) {
+    expect_silent(modist_input(family, family = family))
+  }
 })
 
 test_that("invalid domains fail early", {
@@ -29,14 +36,24 @@ test_that("invalid domains fail early", {
   expect_error(modist_input("x", domain = c(1, Inf)), "finite")
 })
 
-test_that("distribution parameters are validated", {
+test_that("positive distribution parameters are validated", {
   expect_error(
     modist_input("x", value = list(sigma = 0)),
-    "greater than 0"
+    "sigma"
   )
 
   expect_error(
     modist_input("x", family = "beta", value = list(alpha = -1)),
-    "greater than 0"
+    "alpha"
+  )
+
+  expect_error(
+    modist_input("x", family = "studentt", value = list(nu = 0)),
+    "nu"
+  )
+
+  expect_error(
+    modist_input("x", family = "cauchy", value = list(beta = 0)),
+    "beta"
   )
 })

@@ -5,6 +5,18 @@
     normal: window.modist.normal,
     beta: window.modist.beta,
     gamma: window.modist.gamma,
+    studentt: window.modist.studentT,
+    exponential: window.modist.exponential,
+    halfnormal: window.modist.halfNormal,
+    lognormal: window.modist.logNormal,
+    cauchy: window.modist.cauchy,
+    laplace: window.modist.laplace,
+    logistic: window.modist.logistic,
+    weibull: window.modist.weibull,
+    halfstudentt: window.modist.halfStudentT,
+    chisquared: window.modist.chiSquared,
+    inversegamma: window.modist.inverseGamma,
+    kumaraswamy: window.modist.kumaraswamy,
   };
 
   function readConfig(el) {

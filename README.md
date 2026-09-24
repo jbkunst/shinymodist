@@ -69,9 +69,28 @@ bslib::page_fluid(
 
 Use `style = "modist"` to keep the original modist appearance and controls.
 
-## Scope
+## Distribution families
 
-The first version focuses on Normal, Beta, and Gamma distributions. Examples cover basic usage, style/bslib integration, a ROC-curve application with base R calculations, and Beta-Binomial prior elicitation.
+The wrapper exposes all distribution families bundled by modist:
+
+- Normal, Beta, Gamma and Student t
+- Exponential, Half Normal and Log Normal
+- Cauchy, Laplace and Logistic
+- Weibull, Half Student t and Chi-squared
+- Inverse Gamma and Kumaraswamy
+
+All families use the same `modist_input()` API. See the distribution gallery
+for a compact grid plus narrow-sidebar examples.
+
+## WebAssembly and Shinylive
+
+WebAssembly compatibility is treated as a supported deployment target. Every
+push is checked with the r-wasm toolchain. Package releases also build a webR
+filesystem image so the package can be bundled by Shinylive without compiling
+R packages in the browser.
+
+Interactive Shinylive embeds in pkgdown can be added after the first package
+release is available as a WebAssembly binary.
 
 Documentation: <https://jbkunst.github.io/shinymodist/>
 

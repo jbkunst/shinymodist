@@ -14,7 +14,7 @@ modist_input(
 }
 \arguments{
 \item{input_id}{Shiny input id.}
-\item{family}{Distribution family. Currently \code{"normal"}, \code{"beta"}, or \code{"gamma"}.}
+\item{family}{Distribution family supported by the bundled modist version.}
 \item{value}{Named list of initial distribution parameters. Missing parameters use family defaults.}
 \item{domain}{Optional numeric vector of length two giving a fixed visible domain.}
 \item{style}{Visual preset: \code{"minimal"} or \code{"modist"}.}
