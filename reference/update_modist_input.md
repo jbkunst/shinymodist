@@ -1,7 +1,7 @@
 # Update an interactive distribution input
 
 Updates one or more parameter values of an existing
-[`modist_input()`](https://jbkunst.github.io/shinymodist/reference/modist_input.md)
+[`modist_input()`](https://jkunst.com/shinymodist/reference/modist_input.md)
 from the Shiny server.
 
 ## Usage

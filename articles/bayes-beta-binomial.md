@@ -3,7 +3,7 @@
 ## Live demo
 
 [Open this example in
-Shinylive](https://jbkunst.github.io/shinymodist/demos/bayes-beta-binomial/)
+Shinylive](https://jkunst.com/shinymodist/demos/bayes-beta-binomial/)
 
 The app runs entirely in the browser with webR; no local R installation
 is required for the demo.

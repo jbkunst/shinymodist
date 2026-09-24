@@ -3,7 +3,7 @@
 ## Live demo
 
 [Open this example in
-Shinylive](https://jbkunst.github.io/shinymodist/demos/basic/)
+Shinylive](https://jkunst.com/shinymodist/demos/basic/)
 
 The app runs entirely in the browser with webR; no local R installation
 is required for the demo.
@@ -40,7 +40,7 @@ shiny::runApp(system.file("examples/basic", package = "shinymodist"))
 ```
 
 Server-side changes use
-[`update_modist_input()`](https://jbkunst.github.io/shinymodist/reference/update_modist_input.md):
+[`update_modist_input()`](https://jkunst.com/shinymodist/reference/update_modist_input.md):
 
 ``` r
 

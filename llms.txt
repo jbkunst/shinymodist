@@ -63,7 +63,7 @@ modist_input(
 ```
 
 Server-side updates use
-[`update_modist_input()`](https://jbkunst.github.io/shinymodist/reference/update_modist_input.md).
+[`update_modist_input()`](https://jkunst.com/shinymodist/reference/update_modist_input.md).
 
 ## Styles and bslib
 
@@ -97,11 +97,10 @@ The default `height = NULL` keeps the current aspect-ratio behavior.
 The pkgdown site exports the package examples with Shinylive, so they
 run entirely in the browser with webR:
 
-- [Basic input](https://jbkunst.github.io/shinymodist/demos/basic/)
-- [Distribution
-  gallery](https://jbkunst.github.io/shinymodist/demos/gallery/)
-- [ROC curve](https://jbkunst.github.io/shinymodist/demos/roc/)
-- [Beta-Binomial](https://jbkunst.github.io/shinymodist/demos/bayes-beta-binomial/)
+- [Basic input](https://jkunst.com/shinymodist/demos/basic/)
+- [Distribution gallery](https://jkunst.com/shinymodist/demos/gallery/)
+- [ROC curve](https://jkunst.com/shinymodist/demos/roc/)
+- [Beta-Binomial](https://jkunst.com/shinymodist/demos/bayes-beta-binomial/)
 
 A rolling `dev` GitHub prerelease carries the WebAssembly library image
 for the current `main` branch. This lets the site exercise the latest
@@ -118,7 +117,7 @@ The wrapper exposes all distribution families bundled by modist:
 - Inverse Gamma and Kumaraswamy
 
 All families use the same
-[`modist_input()`](https://jbkunst.github.io/shinymodist/reference/modist_input.md)
+[`modist_input()`](https://jkunst.com/shinymodist/reference/modist_input.md)
 API. See the distribution gallery for a compact grid plus narrow-sidebar
 examples.
 
@@ -133,7 +132,7 @@ The pkgdown workflow exports the runnable examples with Shinylive using
 the rolling WebAssembly `dev` release. Stable GitHub releases keep their
 own immutable WebAssembly library images.
 
-Documentation: <https://jbkunst.github.io/shinymodist/>
+Documentation: <https://jkunst.com/shinymodist/>
 
 ## Credits
 
@@ -152,19 +151,18 @@ MIT
 
 ## Shiny inputs
 
-- [`modist_input()`](https://jbkunst.github.io/shinymodist/reference/modist_input.md)
+- [`modist_input()`](https://jkunst.com/shinymodist/reference/modist_input.md)
   : Interactive distribution input
-- [`update_modist_input()`](https://jbkunst.github.io/shinymodist/reference/update_modist_input.md)
+- [`update_modist_input()`](https://jkunst.com/shinymodist/reference/update_modist_input.md)
   : Update an interactive distribution input
 
 # Articles
 
 ### Demos
 
-- [Basic
-  input](https://jbkunst.github.io/shinymodist/articles/basic.md):
+- [Basic input](https://jkunst.com/shinymodist/articles/basic.md):
 - [Distribution
-  gallery](https://jbkunst.github.io/shinymodist/articles/gallery.md):
-- [ROC curve](https://jbkunst.github.io/shinymodist/articles/roc.md):
+  gallery](https://jkunst.com/shinymodist/articles/gallery.md):
+- [ROC curve](https://jkunst.com/shinymodist/articles/roc.md):
 - [Beta-Binomial prior
-  elicitation](https://jbkunst.github.io/shinymodist/articles/bayes-beta-binomial.md):
+  elicitation](https://jkunst.com/shinymodist/articles/bayes-beta-binomial.md):

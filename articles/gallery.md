@@ -3,7 +3,7 @@
 ## Live demo
 
 [Open this example in
-Shinylive](https://jbkunst.github.io/shinymodist/demos/gallery/)
+Shinylive](https://jkunst.com/shinymodist/demos/gallery/)
 
 The app runs entirely in the browser with webR; no local R installation
 is required for the demo.
