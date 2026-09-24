@@ -80,13 +80,19 @@ regular Shiny input.</p>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/" class="external-link">shiny</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://jkunst.com/shinymodist/">shinymodist</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span>
-<span>  <span class="fu"><a href="../reference/modist_input.html">modist_input</a></span><span class="op">(</span></span>
-<span>    <span class="st">"dist"</span>,</span>
-<span>    family <span class="op">=</span> <span class="st">"normal"</span>,</span>
-<span>    value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mu <span class="op">=</span> <span class="fl">0</span>, sigma <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">bslib</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/bslib/reference/page_sidebar.html" class="external-link">page_sidebar</a></span><span class="op">(</span></span>
+<span>  title <span class="op">=</span> <span class="st">"Basic shinymodist input"</span>,</span>
+<span>  sidebar <span class="op">=</span> <span class="fu">bslib</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/bslib/reference/sidebar.html" class="external-link">sidebar</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="../reference/modist_input.html">modist_input</a></span><span class="op">(</span></span>
+<span>      <span class="st">"dist"</span>,</span>
+<span>      family <span class="op">=</span> <span class="st">"normal"</span>,</span>
+<span>      value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mu <span class="op">=</span> <span class="fl">0</span>, sigma <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
 <span>  <span class="op">)</span>,</span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"value"</span><span class="op">)</span></span>
+<span>  <span class="fu">bslib</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/bslib/reference/card.html" class="external-link">card</a></span><span class="op">(</span></span>
+<span>    <span class="fu">bslib</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/bslib/reference/card_body.html" class="external-link">card_header</a></span><span class="op">(</span><span class="st">"Reactive value"</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"value"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>

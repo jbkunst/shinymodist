@@ -24,14 +24,24 @@ p \mid x,n \sim
 \mathrm{Beta}(\alpha + x, \beta + n - x).
 ```
 
+The example uses
+[`bslib::page_sidebar()`](https://rstudio.github.io/bslib/reference/page_sidebar.html):
+the editable prior and trial controls live in the sidebar, while the
+prior/posterior plot is shown in a
+[`bslib::card()`](https://rstudio.github.io/bslib/reference/card.html).
+
 The Shiny input provides the current `alpha` and `beta` values:
 
 ``` r
 
-modist_input(
-  "prior",
-  family = "beta",
-  value = list(alpha = 2, beta = 2)
+bslib::sidebar(
+  modist_input(
+    "prior",
+    family = "beta",
+    value = list(alpha = 2, beta = 2)
+  ),
+  sliderInput("n", "Trials", min = 1, max = 100, value = 20),
+  sliderInput("x", "Successes", min = 0, max = 20, value = 12)
 )
 ```
 
