@@ -1,5 +1,13 @@
 # ROC curve
 
+## Live demo
+
+[Open this example in
+Shinylive](https://jbkunst.github.io/shinymodist/demos/roc/)
+
+The app runs entirely in the browser with webR; no local R installation
+is required for the demo.
+
 This demo uses two Normal inputs on the same fixed domain. The common
 scale makes changes in location and spread directly comparable.
 

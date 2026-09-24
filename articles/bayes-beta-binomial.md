@@ -1,5 +1,13 @@
 # Beta-Binomial prior elicitation
 
+## Live demo
+
+[Open this example in
+Shinylive](https://jbkunst.github.io/shinymodist/demos/bayes-beta-binomial/)
+
+The app runs entirely in the browser with webR; no local R installation
+is required for the demo.
+
 A Beta input provides a direct way to shape a prior over a probability.
 
 If the prior is

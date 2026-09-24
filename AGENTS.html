@@ -200,9 +200,11 @@
 <p>WebAssembly support is mandatory, not optional.</p>
 <ul><li>Every push and pull request should build the package with r-wasm.</li>
 <li>GitHub releases should publish a webR filesystem image using the official r-wasm actions.</li>
+<li>The <code>main</code> branch maintains a rolling <code>dev</code> prerelease whose tag is moved to the latest commit and whose WebAssembly assets are replaced on each push. pkgdown installs <code>jbkunst/shinymodist@dev</code> before exporting Shinylive apps, so the package metadata points Shinylive to those release assets.</li>
 <li>Keep runtime dependencies compatible with webR where practical.</li>
 <li>Shinylive cannot compile R packages from source in the browser; it needs precompiled WebAssembly binaries.</li>
-<li>Add Shinylive embeds to pkgdown only after the package’s WebAssembly release path is working reliably.</li>
+<li>Export the runnable package examples under <code>docs/demos/</code> with <code><a href="https://posit-dev.github.io/r-shinylive/reference/export.html" class="external-link">shinylive::export()</a></code> after the rolling dev WebAssembly image is ready.</li>
+<li>Start with links to the live demos. Inline iframe embeds are optional later and should only be added if they improve the documentation experience.</li>
 <li>Do not add compiled dependencies without checking their WebAssembly support.</li>
 </ul></div>
 <div class="section level2">

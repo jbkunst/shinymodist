@@ -1,5 +1,13 @@
 # Distribution gallery
 
+## Live demo
+
+[Open this example in
+Shinylive](https://jbkunst.github.io/shinymodist/demos/gallery/)
+
+The app runs entirely in the browser with webR; no local R installation
+is required for the demo.
+
 `shinymodist` exposes the distribution families provided by the bundled
 modist version through the same input API.
 

@@ -1,5 +1,13 @@
 # Basic input
 
+## Live demo
+
+[Open this example in
+Shinylive](https://jbkunst.github.io/shinymodist/demos/basic/)
+
+The app runs entirely in the browser with webR; no local R installation
+is required for the demo.
+
 `shinymodist` exposes an interactive distribution as a regular Shiny
 input.
 

@@ -119,6 +119,18 @@
 <p>The default <code>height = NULL</code> keeps the current aspect-ratio behavior.</p>
 </div>
 <div class="section level2">
+<h2 id="live-demos">Live demos<a class="anchor" aria-label="anchor" href="#live-demos"></a>
+</h2>
+<p>The pkgdown site exports the package examples with Shinylive, so they run entirely in the browser with webR:</p>
+<ul>
+<li><a href="https://jbkunst.github.io/shinymodist/demos/basic/">Basic input</a></li>
+<li><a href="https://jbkunst.github.io/shinymodist/demos/gallery/">Distribution gallery</a></li>
+<li><a href="https://jbkunst.github.io/shinymodist/demos/roc/">ROC curve</a></li>
+<li><a href="https://jbkunst.github.io/shinymodist/demos/bayes-beta-binomial/">Beta-Binomial</a></li>
+</ul>
+<p>A rolling <code>dev</code> GitHub prerelease carries the WebAssembly library image for the current <code>main</code> branch. This lets the site exercise the latest package without requiring a local clone.</p>
+</div>
+<div class="section level2">
 <h2 id="distribution-families">Distribution families<a class="anchor" aria-label="anchor" href="#distribution-families"></a>
 </h2>
 <p>The wrapper exposes all distribution families bundled by modist:</p>
@@ -135,7 +147,7 @@
 <h2 id="webassembly-and-shinylive">WebAssembly and Shinylive<a class="anchor" aria-label="anchor" href="#webassembly-and-shinylive"></a>
 </h2>
 <p>WebAssembly compatibility is treated as a supported deployment target. Every push is checked with the r-wasm toolchain. Package releases also build a webR filesystem image so the package can be bundled by Shinylive without compiling R packages in the browser.</p>
-<p>Interactive Shinylive embeds in pkgdown can be added after the first package release is available as a WebAssembly binary.</p>
+<p>The pkgdown workflow exports the runnable examples with Shinylive using the rolling WebAssembly <code>dev</code> release. Stable GitHub releases keep their own immutable WebAssembly library images.</p>
 <p>Documentation: <a href="https://jbkunst.github.io/shinymodist/" class="uri">https://jbkunst.github.io/shinymodist/</a></p>
 </div>
 <div class="section level2">
