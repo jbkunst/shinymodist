@@ -42,6 +42,12 @@ and canonical parameters.
 
 update_modist_input() updates parameter values from the server.
 
+User drags should be debounced before reaching Shiny. Match Shiny’s
+native slider/text-input convention with a 250 ms debounce. Rendering
+inside the browser remains immediate. Server-side updates should update
+the browser immediately without bouncing the same change back to the
+server.
+
 Do not build an htmlwidget in the first version.
 
 ### Minimal by default
@@ -57,6 +63,10 @@ The default appearance must be compact and low-noise:
 - no pan instruction text
 - restrained axis and ticks
 - curve and draggable handles remain the visual focus
+- use the surrounding bslib primary color for all interactive accents in
+  minimal style
+- do not preserve modist’s blue/orange distinction in minimal style
+  unless it carries necessary semantics
 
 Do not expose cosmetic options merely because they are possible.
 
@@ -188,7 +198,11 @@ Initial examples, in this order:
     - Minimal modist_input() usage.
     - Show the reactive input value.
     - Show update_modist_input().
-2.  roc
+2.  styles
+    - Compare the default minimal style with style = “modist”.
+    - Demonstrate that minimal style inherits a bslib primary color.
+    - Show one simple override such as grid = TRUE.
+3.  roc
     - Two Normal inputs representing positive and negative score
       distributions.
     - Use a shared fixed domain.
@@ -197,7 +211,7 @@ Initial examples, in this order:
       plotting code.
     - Do not reproduce the full visual-data-lab application or introduce
       highcharter/tidyverse dependencies.
-3.  bayes-beta-binomial
+4.  bayes-beta-binomial
     - Demonstrate Beta prior elicitation.
     - Dragging the Beta input changes alpha and beta.
     - Show prior and conjugate posterior after observing x successes out

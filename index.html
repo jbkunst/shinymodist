@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">shinymodist</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9001</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,6 +36,7 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-demos" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Demos</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-demos">
 <li><a class="dropdown-item" href="articles/basic.html">Basic input</a></li>
+    <li><a class="dropdown-item" href="articles/styles.html">Styles and bslib</a></li>
     <li><a class="dropdown-item" href="articles/roc.html">ROC curve</a></li>
     <li><a class="dropdown-item" href="articles/bayes-beta-binomial.html">Beta-Binomial</a></li>
   </ul>
@@ -103,9 +104,20 @@
 <p>Server-side updates use <code><a href="reference/update_modist_input.html">update_modist_input()</a></code>.</p>
 </div>
 <div class="section level2">
+<h2 id="styles-and-bslib">Styles and bslib<a class="anchor" aria-label="anchor" href="#styles-and-bslib"></a>
+</h2>
+<p>The default <code>style = "minimal"</code> is intentionally quiet: no grid or toolbar, and its visual accents inherit <code>--bs-primary</code> when used inside a bslib theme.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">bslib</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/bslib/reference/page.html" class="external-link">page_fluid</a></span><span class="op">(</span></span>
+<span>  theme <span class="op">=</span> <span class="fu">bslib</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/bslib/reference/bs_theme.html" class="external-link">bs_theme</a></span><span class="op">(</span>primary <span class="op">=</span> <span class="st">"#6f42c1"</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="reference/modist_input.html">modist_input</a></span><span class="op">(</span><span class="st">"dist"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>Use <code>style = "modist"</code> to keep the original modist appearance and controls.</p>
+</div>
+<div class="section level2">
 <h2 id="scope">Scope<a class="anchor" aria-label="anchor" href="#scope"></a>
 </h2>
-<p>The first version focuses on Normal, Beta, and Gamma distributions. Examples cover basic usage, a ROC-curve application with base R calculations, and Beta-Binomial prior elicitation.</p>
+<p>The first version focuses on Normal, Beta, and Gamma distributions. Examples cover basic usage, style/bslib integration, a ROC-curve application with base R calculations, and Beta-Binomial prior elicitation.</p>
 <p>Documentation: <a href="https://jbkunst.github.io/shinymodist/" class="uri">https://jbkunst.github.io/shinymodist/</a></p>
 </div>
 <div class="section level2">
@@ -131,9 +143,8 @@
 <div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li>
-<a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a>
-</li>
+<li><a href="LICENSE.html">Full license</a></li>
+<li><small><a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
 

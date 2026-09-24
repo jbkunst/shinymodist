@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="index.html">shinymodist</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9001</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,6 +19,7 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-demos" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Demos</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-demos"><li><a class="dropdown-item" href="articles/basic.html">Basic input</a></li>
+    <li><a class="dropdown-item" href="articles/styles.html">Styles and bslib</a></li>
     <li><a class="dropdown-item" href="articles/roc.html">ROC curve</a></li>
     <li><a class="dropdown-item" href="articles/bayes-beta-binomial.html">Beta-Binomial</a></li>
   </ul></li>
@@ -64,6 +65,7 @@
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">update_modist_input</span>()</span></code></pre></div>
 <p>modist_input() returns a regular Shiny input value containing the family and canonical parameters.</p>
 <p>update_modist_input() updates parameter values from the server.</p>
+<p>User drags should be debounced before reaching Shiny. Match Shiny’s native slider/text-input convention with a 250 ms debounce. Rendering inside the browser remains immediate. Server-side updates should update the browser immediately without bouncing the same change back to the server.</p>
 <p>Do not build an htmlwidget in the first version.</p>
 </div>
 <div class="section level3">
@@ -78,6 +80,8 @@
 <li>no pan instruction text</li>
 <li>restrained axis and ticks</li>
 <li>curve and draggable handles remain the visual focus</li>
+<li>use the surrounding bslib primary color for all interactive accents in minimal style</li>
+<li>do not preserve modist’s blue/orange distinction in minimal style unless it carries necessary semantics</li>
 </ul><p>Do not expose cosmetic options merely because they are possible.</p>
 </div>
 <div class="section level3">
@@ -170,6 +174,11 @@
 <ul><li>Minimal modist_input() usage.</li>
 <li>Show the reactive input value.</li>
 <li>Show update_modist_input().</li>
+</ul></li>
+<li>styles
+<ul><li>Compare the default minimal style with style = “modist”.</li>
+<li>Demonstrate that minimal style inherits a bslib primary color.</li>
+<li>Show one simple override such as grid = TRUE.</li>
 </ul></li>
 <li>roc
 <ul><li>Two Normal inputs representing positive and negative score distributions.</li>
