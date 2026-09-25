@@ -18,7 +18,7 @@
 
     <a class="navbar-brand me-2" href="index.html">shinymodist</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9007</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9008</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -77,7 +77,7 @@
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">update_modist_input</span>()</span></code></pre></div>
 <p>modist_input() returns a regular Shiny input value containing the family and canonical parameters.</p>
 <p>update_modist_input() updates parameter values from the server.</p>
-<p>User drags should be debounced before reaching Shiny. Match Shiny’s native slider/text-input convention with a 250 ms debounce. Rendering inside the browser remains immediate. Server-side updates should update the browser immediately without bouncing the same change back to the server.</p>
+<p>User drags should be debounced before reaching Shiny. Match Shiny’s native slider/text-input convention with a 250 ms debounce. Rendering inside the browser remains immediate. Server-side updates should update the browser immediately and notify Shiny of the resulting input value once, matching native Shiny inputs so reactive dependents stay synchronized.</p>
 <p>Do not build an htmlwidget in the first version.</p>
 </div>
 <div class="section level3">
