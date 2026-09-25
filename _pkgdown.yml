@@ -16,6 +16,7 @@ template:
         gtag('config', 'G-ECZ9XLT78C');
       </script>
   bootstrap: 5
+  math-rendering: mathjax
   bslib:
     primary: "#0E7490"
     secondary: "#0F172A"
@@ -50,6 +51,8 @@ navbar:
           href: articles/roc.html
         - text: Beta-Binomial
           href: articles/bayes-beta-binomial.html
+        - text: Bayesian normal model
+          href: articles/normal-priors.html
 
 reference:
   - title: Shiny inputs
@@ -64,3 +67,4 @@ articles:
       - gallery
       - roc
       - bayes-beta-binomial
+      - normal-priors

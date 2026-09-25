@@ -7,14 +7,38 @@ A lightweight Shiny input wrapper around [modist](https://github.com/williambdea
 
 ## Try it live
 
-The two inputs below define priors for a simple Bayesian Normal model: a Normal
-prior for the mean and an Inverse-Gamma prior for the variance. Drag either
-distribution to update the implied prior predictive distribution.
+A useful Bayesian pattern is to make the prior itself interactive. Here we use
+two `shinymodist` inputs for a Normal model with unknown mean and variance:
+
+$$
+y_i \mid \mu, \sigma^2 \sim \mathcal{N}(\mu, \sigma^2)
+$$
+
+$$
+\mu \sim \mathcal{N}(m_0, s_0^2),
+\qquad
+\sigma^2 \sim \operatorname{InverseGamma}(\alpha_0, \beta_0)
+$$
+
+After observing data, Bayes' rule combines the likelihood and both priors:
+
+$$
+p(\mu, \sigma^2 \mid y)
+\propto
+p(y \mid \mu, \sigma^2)\,
+p(\mu)\,
+p(\sigma^2).
+$$
+
+Drag either prior below, then increase the number of observations. The two
+panels show how the marginal posterior moves away from — or stays close to —
+the prior. The posterior is evaluated on a small deterministic grid, keeping
+the example dependency-free and easy to inspect.
 
 <iframe
   src="https://jkunst.com/shinymodist/demos/normal-priors/"
   title="Bayesian normal model with shinymodist"
-  style="width: 100%; height: 620px; border: 1px solid #dee2e6; border-radius: 0.75rem;"
+  style="width: 100%; height: 650px; border: 1px solid #dee2e6; border-radius: 0.75rem;"
 ></iframe>
 
 
