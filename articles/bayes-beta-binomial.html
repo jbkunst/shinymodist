@@ -6,7 +6,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Beta-Binomial prior elicitation • shinymodist</title>
-<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- mathjax math --><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script><script>
+  window.MathJax = {
+    chtml: {
+      fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
+    }
+  };
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/IBM_Plex_Sans-0.4.10/font.css" rel="stylesheet">
 <link href="../deps/Fira_Mono-0.4.10/font.css" rel="stylesheet">
@@ -45,6 +51,7 @@
     <li><a class="dropdown-item" href="../articles/gallery.html">Distribution gallery</a></li>
     <li><a class="dropdown-item" href="../articles/roc.html">ROC curve</a></li>
     <li><a class="dropdown-item" href="../articles/bayes-beta-binomial.html">Beta-Binomial</a></li>
+    <li><a class="dropdown-item" href="../articles/normal-priors.html">Bayesian normal model</a></li>
   </ul>
 </li>
       </ul>
@@ -85,18 +92,16 @@ installation is required for the demo.</p>
 <p>A Beta input provides a direct way to shape a prior over a
 probability.</p>
 <p>If the prior is</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>∼</mo><mrow><mi mathvariant="normal">B</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">a</mi></mrow><mo stretchy="false" form="prefix">(</mo><mi>α</mi><mo>,</mo><mi>β</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">
+<p><span class="math display">\[
 p \sim \mathrm{Beta}(\alpha, \beta)
-</annotation></semantics></math></p>
-<p>and we observe
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
-successes in
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>
-Bernoulli trials, the conjugate posterior is</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>∣</mo><mi>x</mi><mo>,</mo><mi>n</mi><mo>∼</mo><mrow><mi mathvariant="normal">B</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">a</mi></mrow><mo stretchy="false" form="prefix">(</mo><mi>α</mi><mo>+</mo><mi>x</mi><mo>,</mo><mi>β</mi><mo>+</mo><mi>n</mi><mo>−</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\]</span></p>
+<p>and we observe <span class="math inline">\(x\)</span> successes in
+<span class="math inline">\(n\)</span> Bernoulli trials, the conjugate
+posterior is</p>
+<p><span class="math display">\[
 p \mid x,n \sim
 \mathrm{Beta}(\alpha + x, \beta + n - x).
-</annotation></semantics></math></p>
+\]</span></p>
 <p>The example uses <code><a href="https://rstudio.github.io/bslib/reference/page_sidebar.html" class="external-link">bslib::page_sidebar()</a></code>: the editable
 prior and trial controls live in the sidebar, while the prior/posterior
 plot is shown in a <code><a href="https://rstudio.github.io/bslib/reference/card.html" class="external-link">bslib::card()</a></code>.</p>

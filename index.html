@@ -6,7 +6,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Interactive Distribution Inputs for Shiny • shinymodist</title>
-<script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- mathjax math --><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script><script>
+  window.MathJax = {
+    chtml: {
+      fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
+    }
+  };
+</script><script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="deps/IBM_Plex_Sans-0.4.10/font.css" rel="stylesheet">
 <link href="deps/Fira_Mono-0.4.10/font.css" rel="stylesheet">
@@ -47,6 +53,7 @@
     <li><a class="dropdown-item" href="articles/gallery.html">Distribution gallery</a></li>
     <li><a class="dropdown-item" href="articles/roc.html">ROC curve</a></li>
     <li><a class="dropdown-item" href="articles/bayes-beta-binomial.html">Beta-Binomial</a></li>
+    <li><a class="dropdown-item" href="articles/normal-priors.html">Bayesian normal model</a></li>
   </ul>
 </li>
       </ul>
@@ -67,6 +74,30 @@
 </h1></div>
 <p>A lightweight Shiny input wrapper around <a href="https://github.com/williambdean/modist" class="external-link">modist</a>: draggable probability distributions that behave like regular Shiny inputs.</p>
 <p><code>shinymodist</code> keeps the default presentation compact and low-noise, while retaining an opt-in <code>style = "modist"</code> mode close to the upstream experience.</p>
+<div class="section level2">
+<h2 id="try-it-live">Try it live<a class="anchor" aria-label="anchor" href="#try-it-live"></a>
+</h2>
+<p>A useful Bayesian pattern is to make the prior itself interactive. Here we use two <code>shinymodist</code> inputs for a Normal model with unknown mean and variance:</p>
+<p><span class="math display">\[
+y_i \mid \mu, \sigma^2 \sim \mathcal{N}(\mu, \sigma^2)
+\]</span></p>
+<p><span class="math display">\[
+\mu \sim \mathcal{N}(m_0, s_0^2),
+\qquad
+\sigma^2 \sim \operatorname{InverseGamma}(\alpha_0, \beta_0)
+\]</span></p>
+<p>After observing data, Bayes’ rule combines the likelihood and both priors:</p>
+<p><span class="math display">\[
+p(\mu, \sigma^2 \mid y)
+\propto
+p(y \mid \mu, \sigma^2)\,
+p(\mu)\,
+p(\sigma^2).
+\]</span></p>
+<p>Drag either prior below, then increase the number of observations. The two panels show how the marginal posterior moves away from — or stays close to — the prior. The posterior is evaluated on a small deterministic grid, keeping the example dependency-free and easy to inspect.</p>
+<iframe src="https://jkunst.com/shinymodist/demos/normal-priors/" title="Bayesian normal model with shinymodist" style="width: 100%; height: 650px; border: 1px solid #dee2e6; border-radius: 0.75rem;">
+</iframe>
+</div>
 <div class="section level2">
 <h2 id="install">Install<a class="anchor" aria-label="anchor" href="#install"></a>
 </h2>
@@ -141,8 +172,9 @@
 <li><a href="https://jkunst.com/shinymodist/demos/gallery/">Distribution gallery</a></li>
 <li><a href="https://jkunst.com/shinymodist/demos/roc/">ROC curve</a></li>
 <li><a href="https://jkunst.com/shinymodist/demos/bayes-beta-binomial/">Beta-Binomial</a></li>
+<li><a href="https://jkunst.com/shinymodist/demos/normal-priors/">Bayesian normal model</a></li>
 </ul>
-<p>A rolling <code>dev</code> GitHub prerelease carries the WebAssembly library image for the current <code>main</code> branch. This lets the site exercise the latest package without requiring a local clone.</p>
+<p>The live examples run entirely in the browser with Shinylive and webR.</p>
 </div>
 <div class="section level2">
 <h2 id="distribution-families">Distribution families<a class="anchor" aria-label="anchor" href="#distribution-families"></a>
@@ -160,9 +192,7 @@
 <div class="section level2">
 <h2 id="webassembly-and-shinylive">WebAssembly and Shinylive<a class="anchor" aria-label="anchor" href="#webassembly-and-shinylive"></a>
 </h2>
-<p>WebAssembly compatibility is treated as a supported deployment target. Every push is checked with the r-wasm toolchain. Package releases also build a webR filesystem image so the package can be bundled by Shinylive without compiling R packages in the browser.</p>
-<p>The pkgdown workflow exports the runnable examples with Shinylive using the rolling WebAssembly <code>dev</code> release. Stable GitHub releases keep their own immutable WebAssembly library images.</p>
-<p>Documentation: <a href="https://jkunst.com/shinymodist/" class="uri">https://jkunst.com/shinymodist/</a></p>
+<p>The examples can run entirely in the browser with Shinylive and webR. WebAssembly compatibility is checked in CI and supported in package releases.</p>
 </div>
 <div class="section level2">
 <h2 id="credits">Credits<a class="anchor" aria-label="anchor" href="#credits"></a>

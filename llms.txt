@@ -8,6 +8,29 @@ distributions that behave like regular Shiny inputs.
 while retaining an opt-in `style = "modist"` mode close to the upstream
 experience.
 
+## Try it live
+
+A useful Bayesian pattern is to make the prior itself interactive. Here
+we use two `shinymodist` inputs for a Normal model with unknown mean and
+variance:
+
+\\ y_i \mid \mu, \sigma^2 \sim \mathcal{N}(\mu, \sigma^2) \\
+
+\\ \mu \sim \mathcal{N}(m_0, s_0^2), \qquad \sigma^2 \sim
+\operatorname{InverseGamma}(\alpha_0, \beta_0) \\
+
+After observing data, Bayes’ rule combines the likelihood and both
+priors:
+
+\\ p(\mu, \sigma^2 \mid y) \propto p(y \mid \mu, \sigma^2)\\ p(\mu)\\
+p(\sigma^2). \\
+
+Drag either prior below, then increase the number of observations. The
+two panels show how the marginal posterior moves away from — or stays
+close to — the prior. The posterior is evaluated on a small
+deterministic grid, keeping the example dependency-free and easy to
+inspect.
+
 ## Install
 
 ``` r
@@ -107,10 +130,10 @@ run entirely in the browser with webR:
 - [Distribution gallery](https://jkunst.com/shinymodist/demos/gallery/)
 - [ROC curve](https://jkunst.com/shinymodist/demos/roc/)
 - [Beta-Binomial](https://jkunst.com/shinymodist/demos/bayes-beta-binomial/)
+- [Bayesian normal
+  model](https://jkunst.com/shinymodist/demos/normal-priors/)
 
-A rolling `dev` GitHub prerelease carries the WebAssembly library image
-for the current `main` branch. This lets the site exercise the latest
-package without requiring a local clone.
+The live examples run entirely in the browser with Shinylive and webR.
 
 ## Distribution families
 
@@ -129,16 +152,9 @@ examples.
 
 ## WebAssembly and Shinylive
 
-WebAssembly compatibility is treated as a supported deployment target.
-Every push is checked with the r-wasm toolchain. Package releases also
-build a webR filesystem image so the package can be bundled by Shinylive
-without compiling R packages in the browser.
-
-The pkgdown workflow exports the runnable examples with Shinylive using
-the rolling WebAssembly `dev` release. Stable GitHub releases keep their
-own immutable WebAssembly library images.
-
-Documentation: <https://jkunst.com/shinymodist/>
+The examples can run entirely in the browser with Shinylive and webR.
+WebAssembly compatibility is checked in CI and supported in package
+releases.
 
 ## Credits
 
@@ -172,3 +188,5 @@ MIT
 - [ROC curve](https://jkunst.com/shinymodist/articles/roc.md):
 - [Beta-Binomial prior
   elicitation](https://jkunst.com/shinymodist/articles/bayes-beta-binomial.md):
+- [Bayesian normal
+  model](https://jkunst.com/shinymodist/articles/normal-priors.md):

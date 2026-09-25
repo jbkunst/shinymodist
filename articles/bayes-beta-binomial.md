@@ -12,17 +12,12 @@ A Beta input provides a direct way to shape a prior over a probability.
 
 If the prior is
 
-``` math
-p \sim \mathrm{Beta}(\alpha, \beta)
-```
+\\ p \sim \mathrm{Beta}(\alpha, \beta) \\
 
-and we observe $`x`$ successes in $`n`$ Bernoulli trials, the conjugate
+and we observe \\x\\ successes in \\n\\ Bernoulli trials, the conjugate
 posterior is
 
-``` math
-p \mid x,n \sim
-\mathrm{Beta}(\alpha + x, \beta + n - x).
-```
+\\ p \mid x,n \sim \mathrm{Beta}(\alpha + x, \beta + n - x). \\
 
 The example uses
 [`bslib::page_sidebar()`](https://rstudio.github.io/bslib/reference/page_sidebar.html):

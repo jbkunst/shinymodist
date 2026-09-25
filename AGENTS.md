@@ -282,3 +282,13 @@ Consider it only if there is a demonstrated need to use the component
 outside Shiny, for example in static Quarto or R Markdown output.
 
 Do not build an htmlwidget merely for completeness.
+
+## Homepage live demo
+
+The pkgdown index embeds the `normal-priors` Shinylive example. It
+intentionally uses two different distribution inputs: Normal for the
+mean and Inverse-Gamma for the variance. A small fixed data sequence and
+an observation-count slider show prior-to-posterior updating for both
+parameters. The posterior is evaluated on a deterministic grid so the
+example stays dependency-free and browser-friendly. Keep this example
+compact because it is part of the landing page.

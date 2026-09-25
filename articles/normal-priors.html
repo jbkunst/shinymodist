@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>ROC curve • shinymodist</title>
+<title>Bayesian normal model • shinymodist</title>
 <!-- mathjax math --><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script><script>
   window.MathJax = {
     chtml: {
@@ -18,7 +18,7 @@
 <link href="../deps/Fira_Mono-0.4.10/font.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="ROC curve">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Bayesian normal model">
 <!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-ECZ9XLT78C"></script><script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -73,11 +73,11 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
-      <h1>ROC curve</h1>
+      <h1>Bayesian normal model</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/jbkunst/shinymodist/blob/main/vignettes/roc.Rmd" class="external-link"><code>vignettes/roc.Rmd</code></a></small>
-      <div class="d-none name"><code>roc.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/jbkunst/shinymodist/blob/main/vignettes/normal-priors.Rmd" class="external-link"><code>vignettes/normal-priors.Rmd</code></a></small>
+      <div class="d-none name"><code>normal-priors.Rmd</code></div>
     </div>
 
     
@@ -85,33 +85,47 @@
 <div class="section level2">
 <h2 id="live-demo">Live demo<a class="anchor" aria-label="anchor" href="#live-demo"></a>
 </h2>
-<p><a href="https://jkunst.com/shinymodist/demos/roc/">Open this example
-in Shinylive</a></p>
-<p>The app runs entirely in the browser with webR; no local R
-installation is required for the demo.</p>
-<p>This demo uses two Normal inputs on the same fixed domain. The common
-scale makes changes in location and spread directly comparable.</p>
-<p>The statistical calculations are base R: <code><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">dnorm()</a></code> for the
-score densities and <code><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">pnorm()</a></code> for the ROC curve.</p>
+<p><a href="https://jkunst.com/shinymodist/demos/normal-priors/">Open
+this example in Shinylive</a></p>
+<p>This example uses two interactive priors for a Normal likelihood:</p>
+<p><span class="math display">\[
+y_i \mid \mu, \sigma^2 \sim \mathcal{N}(\mu, \sigma^2),
+\]</span></p>
+<p><span class="math display">\[
+\mu \sim \mathcal{N}(m_0, s_0^2),
+\qquad
+\sigma^2 \sim \operatorname{InverseGamma}(\alpha_0, \beta_0).
+\]</span></p>
+<p>The posterior is proportional to likelihood times priors:</p>
+<p><span class="math display">\[
+p(\mu, \sigma^2 \mid y)
+\propto
+p(y \mid \mu, \sigma^2)\,
+p(\mu)\,
+p(\sigma^2).
+\]</span></p>
+<p>The app evaluates this posterior on a small deterministic grid, then
+integrates the joint surface numerically to obtain marginal posterior
+densities for <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span>. This keeps the example
+transparent and avoids an MCMC dependency.</p>
+<p>The two priors are ordinary <code><a href="../reference/modist_input.html">modist_input()</a></code> controls:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">score_domain</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="../reference/modist_input.html">modist_input</a></span><span class="op">(</span></span>
-<span>  <span class="st">"positive"</span>,</span>
-<span>  value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mu <span class="op">=</span> <span class="fl">1</span>, sigma <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
-<span>  domain <span class="op">=</span> <span class="va">score_domain</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/modist_input.html">modist_input</a></span><span class="op">(</span></span>
+<span>  <span class="st">"mu_prior"</span>,</span>
+<span>  family <span class="op">=</span> <span class="st">"normal"</span>,</span>
+<span>  value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mu <span class="op">=</span> <span class="fl">0</span>, sigma <span class="op">=</span> <span class="fl">1.25</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/modist_input.html">modist_input</a></span><span class="op">(</span></span>
-<span>  <span class="st">"negative"</span>,</span>
-<span>  value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mu <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>, sigma <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
-<span>  domain <span class="op">=</span> <span class="va">score_domain</span></span>
+<span>  <span class="st">"variance_prior"</span>,</span>
+<span>  family <span class="op">=</span> <span class="st">"inversegamma"</span>,</span>
+<span>  value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">3</span>, beta <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p>Run the complete sidebar example with:</p>
+<p>Run it locally with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/runApp.html" class="external-link">runApp</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"examples/roc"</span>, package <span class="op">=</span> <span class="st">"shinymodist"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>The example uses <code>bslib</code> only for layout. The probability
-calculations and plots remain base R.</p>
+<code class="sourceCode R"><span><span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/runApp.html" class="external-link">runApp</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"examples/normal-priors"</span>, package <span class="op">=</span> <span class="st">"shinymodist"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 </div>
   </main>
 </div>
