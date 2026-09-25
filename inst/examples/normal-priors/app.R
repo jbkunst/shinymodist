@@ -53,27 +53,30 @@ ui <- bslib::page_sidebar(
       domain = c(0, 3)
     ),
     hr(),
-    sliderInput(
-      "n_obs",
-      "Observed data",
-      min = 1,
-      max = length(observations),
-      value = 4,
-      step = 1,
-      ticks = FALSE
+    div(
+      style = "max-width: 220px;",
+      sliderInput(
+        "n_obs",
+        "Observed data",
+        min = 1,
+        max = length(observations),
+        value = 4,
+        step = 1,
+        ticks = FALSE,
+        width = "100%"
+      )
     ),
     textOutput("data_summary")
   ),
-  bslib::layout_columns(
-    col_widths = c(6, 6),
-    bslib::card(
-      bslib::card_header("Mean: prior → posterior"),
-      plotOutput("mu_plot", height = "330px")
-    ),
-    bslib::card(
-      bslib::card_header("Variance: prior → posterior"),
-      plotOutput("variance_plot", height = "330px")
-    )
+  bslib::card(
+    fill = FALSE,
+    bslib::card_header("Mean: prior → posterior"),
+    plotOutput("mu_plot", height = "280px")
+  ),
+  bslib::card(
+    fill = FALSE,
+    bslib::card_header("Variance: prior → posterior"),
+    plotOutput("variance_plot", height = "280px")
   )
 )
 

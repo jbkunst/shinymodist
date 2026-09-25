@@ -5,10 +5,16 @@ A lightweight Shiny input wrapper around [modist](https://github.com/williambdea
 `shinymodist` keeps the default presentation compact and low-noise, while retaining an opt-in `style = "modist"` mode close to the upstream experience.
 
 
-## Try it live
+## Motivation
 
-A useful Bayesian pattern is to make the prior itself interactive. Here we use
-two `shinymodist` inputs for a Normal model with unknown mean and variance:
+`modist` makes probability distributions directly manipulable.
+`shinymodist` turns that interaction into a regular Shiny input, so a
+distribution can become part of the application's state rather than just a
+plot.
+
+Bayesian prior elicitation is a natural example: changing an assumption should
+feel as direct as moving the distribution itself. Here we use two
+`shinymodist` inputs for a Normal model with unknown mean and variance:
 
 $$
 y_i \mid \mu, \sigma^2 \sim \mathcal{N}(\mu, \sigma^2)
@@ -30,15 +36,15 @@ p(\mu)\,
 p(\sigma^2).
 $$
 
-Drag either prior below, then increase the number of observations. The two
-panels show how the marginal posterior moves away from — or stays close to —
-the prior. The posterior is evaluated on a small deterministic grid, keeping
-the example dependency-free and easy to inspect.
+Drag either prior below, then reveal more observations. The two panels show
+how each marginal posterior moves away from — or stays close to — the prior.
+The posterior is evaluated on a small deterministic grid, keeping the example
+dependency-free and easy to inspect.
 
 <iframe
   src="https://jkunst.com/shinymodist/demos/normal-priors/"
   title="Bayesian normal model with shinymodist"
-  style="width: 100%; height: 650px; border: 1px solid #dee2e6; border-radius: 0.75rem;"
+  style="width: 100%; height: 900px; border: 1px solid #dee2e6; border-radius: 0.75rem;"
 ></iframe>
 
 

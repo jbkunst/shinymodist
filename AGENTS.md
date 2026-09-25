@@ -245,4 +245,7 @@ uses two different distribution inputs: Normal for the mean and Inverse-Gamma
 for the variance. A small fixed data sequence and an observation-count slider
 show prior-to-posterior updating for both parameters. The posterior is evaluated
 on a deterministic grid so the example stays dependency-free and browser-friendly.
-Keep this example compact because it is part of the landing page.
+Keep this example compact because it is part of the landing page. Use a
+sidebar for the two priors and compact observation slider, and stack the two
+posterior cards vertically so the embedded app remains readable without
+horizontal scrolling.
