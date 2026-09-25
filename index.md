@@ -152,8 +152,8 @@ The wrapper exposes all distribution families bundled by modist:
 
 All families use the same
 [`modist_input()`](https://jkunst.com/shinymodist/reference/modist_input.md)
-API. See the distribution gallery for a compact grid plus narrow-sidebar
-examples.
+API. See the distribution gallery for a compact fillable grid of every
+supported family.
 
 ## WebAssembly and Shinylive
 

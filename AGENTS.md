@@ -209,13 +209,15 @@ Initial examples, in this order:
     - Show the reactive input value.
     - Show update_modist_input().
 2.  gallery
-    - Show every supported upstream distribution in a compact grid.
+    - Show every supported upstream distribution and nothing else.
+    - Use a fillable 4-column grid; with 15 families the final cell
+      remains empty.
     - Use bslib so minimal style visibly inherits the theme primary
       color.
-    - Include a narrow sidebar example and a style = “modist”
-      comparison.
-    - Use a natural-height, non-filling grid so rows never overlap.
-    - Use the responsive default rather than adding a height argument.
+    - Use zero grid gap so the gallery reads as one compact distribution
+      matrix.
+    - Let each input fill its card height. Keep narrow-sidebar and
+      style-comparison testing outside the gallery.
 3.  roc
     - Two Normal inputs representing positive and negative score
       distributions.
