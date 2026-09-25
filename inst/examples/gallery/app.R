@@ -59,15 +59,16 @@ ui <- bslib::page_fillable(
   padding = 0,
   gap = 0,
   do.call(
-    bslib::layout_columns,
+    bslib::layout_column_wrap,
     c(
       cards,
       list(
-        col_widths = 3,
-        row_heights = rep(1, 4),
-        gap = 0,
+        width = 1 / 4,
+        heights_equal = "all",
         fill = TRUE,
-        fillable = TRUE
+        fillable = TRUE,
+        height = "100%",
+        gap = 0
       )
     )
   )
