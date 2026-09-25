@@ -72,10 +72,12 @@ Do not expose cosmetic options merely because they are possible.
 
 Container-responsive label sizing is an internal design responsibility.
 SVG labels must remain readable in narrow cards/sidebars without adding
-public font-size arguments. Avoid abrupt breakpoint jumps; narrow
-sidebars should use the same tick sizing as the normal sidebar case. In
-minimal Normal inputs, display the center handle as μ rather than the
-longer “mean” label.
+public font-size arguments. Keep narrow-container typography between
+upstream modist and the previous oversized minimal treatment: ticks
+should stay restrained, while interactive chip labels may be moderately
+larger for readability. Avoid abrupt breakpoint jumps. In minimal Normal
+inputs, display the center handle as μ rather than the longer “mean”
+label.
 
 ### Preserve access to the original modist experience
 

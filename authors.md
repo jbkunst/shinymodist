@@ -13,12 +13,12 @@ Source:
 [`DESCRIPTION`](https://github.com/jbkunst/shinymodist/blob/main/DESCRIPTION)
 
 Kunst J (2026). *shinymodist: Interactive Distribution Inputs for
-Shiny*. R package version 0.0.0.9006, <https://jkunst.com/shinymodist/>.
+Shiny*. R package version 0.0.0.9007, <https://jkunst.com/shinymodist/>.
 
     @Manual{,
       title = {shinymodist: Interactive Distribution Inputs for Shiny},
       author = {Joshua Kunst},
       year = {2026},
-      note = {R package version 0.0.0.9006},
+      note = {R package version 0.0.0.9007},
       url = {https://jkunst.com/shinymodist/},
     }
