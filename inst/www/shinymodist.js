@@ -51,6 +51,24 @@
     });
   }
 
+  function observeMinimalLabels(el, config, target) {
+    if ((config.style || "minimal") !== "minimal" || config.family !== "normal") {
+      return;
+    }
+
+    const observer = new MutationObserver(function () {
+      applyMinimalLabels(el, config);
+    });
+
+    observer.observe(target, {
+      childList: true,
+      subtree: true,
+      characterData: true,
+    });
+
+    el._shinymodistLabelObserver = observer;
+  }
+
   function mount(el) {
     if (el._shinymodist) return;
 
@@ -73,6 +91,7 @@
 
     const instance = factory(target, config.value || {}, options);
     applyMinimalLabels(el, config);
+    observeMinimalLabels(el, config, target);
 
     el._shinymodist = instance;
     el._shinymodistFamily = config.family;

@@ -14,7 +14,11 @@ ui <- bslib::page_sidebar(
       family = "normal",
       value = list(mu = 0, sigma = 1)
     ),
-    actionButton("set_value", "Set mu = 1, sigma = 2")
+    actionButton("set_value", "Set mu = 1, sigma = 2"),
+    tags$small(
+      class = "text-body-secondary",
+      paste("shinymodist", as.character(packageVersion("shinymodist")))
+    )
   ),
   bslib::card(
     bslib::card_header("Reactive value"),
