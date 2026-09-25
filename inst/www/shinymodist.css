@@ -10,6 +10,18 @@
   min-width: 0;
 }
 
+/*
+ * modist creates a responsive SVG within this element.  Constrain the
+ * intermediate root as well, since flex/grid sidebar layouts otherwise use
+ * its intrinsic SVG width when calculating horizontal overflow.
+ */
+.shinymodist-input .mroot {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+}
+
 .shinymodist-input.shinymodist-height-fixed,
 .shinymodist-input.shinymodist-height-fixed .shinymodist-mount,
 .shinymodist-input.shinymodist-height-fixed .mroot {
