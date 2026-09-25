@@ -129,20 +129,20 @@
  */
 @container (max-width: 360px) {
   .shinymodist-input[data-style="minimal"] .mtick {
-    font-size: 24px;
+    font-size: 16px;
   }
 
   .shinymodist-input[data-style="minimal"] .mlabeltxt {
-    font-size: 30px;
+    font-size: 22px;
   }
 }
 
 @container (min-width: 361px) and (max-width: 520px) {
   .shinymodist-input[data-style="minimal"] .mtick {
-    font-size: 18px;
+    font-size: 15px;
   }
 
   .shinymodist-input[data-style="minimal"] .mlabeltxt {
-    font-size: 20px;
+    font-size: 18px;
   }
 }
