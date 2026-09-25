@@ -210,8 +210,8 @@ Initial examples, in this order:
     - Show update_modist_input().
 2.  gallery
     - Show every supported upstream distribution and nothing else.
-    - Use a fillable 4-column grid; with 15 families the final cell
-      remains empty.
+    - Use `bslib::layout_column_wrap(width = 1 / 4)` as a fillable
+      4-column grid; with 15 families the final cell remains empty.
     - Use bslib so minimal style visibly inherits the theme primary
       color.
     - Use zero grid gap so the gallery reads as one compact distribution

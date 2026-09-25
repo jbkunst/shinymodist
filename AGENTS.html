@@ -187,7 +187,7 @@
 </ul></li>
 <li>gallery
 <ul><li>Show every supported upstream distribution and nothing else.</li>
-<li>Use a fillable 4-column grid; with 15 families the final cell remains empty.</li>
+<li>Use <code>bslib::layout_column_wrap(width = 1 / 4)</code> as a fillable 4-column grid; with 15 families the final cell remains empty.</li>
 <li>Use bslib so minimal style visibly inherits the theme primary color.</li>
 <li>Use zero grid gap so the gallery reads as one compact distribution matrix.</li>
 <li>Let each input fill its card height. Keep narrow-sidebar and style-comparison testing outside the gallery.</li>
