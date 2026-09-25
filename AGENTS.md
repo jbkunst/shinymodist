@@ -59,7 +59,9 @@ Do not expose cosmetic options merely because they are possible.
 
 Container-responsive label sizing is an internal design responsibility. SVG
 labels must remain readable in narrow cards/sidebars without adding public
-font-size arguments.
+font-size arguments. Avoid abrupt breakpoint jumps; narrow sidebars should use
+the same tick sizing as the normal sidebar case. In minimal Normal inputs,
+display the center handle as μ rather than the longer "mean" label.
 
 ### Preserve access to the original modist experience
 
@@ -179,12 +181,16 @@ Initial examples, in this order:
    - Show every supported upstream distribution in a compact grid.
    - Use bslib so minimal style visibly inherits the theme primary color.
    - Include a narrow sidebar example and a style = "modist" comparison.
+   - Use a natural-height, non-filling grid so rows never overlap.
    - Use the responsive default rather than adding a height argument.
 
 3. roc
    - Two Normal inputs representing positive and negative score distributions.
+   - Start with wider sigmas so the draggable handles are comfortably separated.
    - Use a shared fixed domain.
    - Demonstrate that the component works naturally in a sidebar.
+   - Use restrained blue density fills and an amber threshold, borrowing the
+     visual grammar (not the full complexity) of visual-data-lab.
    - Use base R dnorm(), pnorm(), and base graphics for statistical and plotting code.
    - Do not reproduce the full visual-data-lab application or introduce highcharter/tidyverse dependencies.
 
@@ -192,6 +198,7 @@ Initial examples, in this order:
    - Demonstrate Beta prior elicitation.
    - Dragging the Beta input changes alpha and beta.
    - Show prior and conjugate posterior after observing x successes out of n.
+   - Keep posterior parameters as a simple verbatim str() output, not a card.
    - Use base R dbeta() and Shiny only.
    - Do not introduce Stan, brms, JAGS, or similar frameworks merely for the example.
 
@@ -242,9 +249,11 @@ Do not build an htmlwidget merely for completeness.
 
 The pkgdown index embeds the `normal-priors` Shinylive example. It intentionally
 uses two different distribution inputs: Normal for the mean and Inverse-Gamma
-for the variance. A small fixed data sequence and an observation-count slider
-show prior-to-posterior updating for both parameters. The posterior is evaluated
-on a deterministic grid so the example stays dependency-free and browser-friendly.
+for the variance. Real `mtcars$mpg` observations and an observation-count
+slider show prior-to-posterior updating for both parameters. Prior/posterior
+plots use restrained teal fills with amber data markers. The posterior is
+evaluated on a deterministic grid so the example stays dependency-free and
+browser-friendly.
 Keep this example compact because it is part of the landing page. Use a
 sidebar for the two priors and compact observation slider, and stack the two
 posterior cards vertically so the embedded app remains readable without

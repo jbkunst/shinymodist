@@ -1,6 +1,6 @@
 Package: shinymodist
 Title: Interactive Distribution Inputs for Shiny
-Version: 0.0.0.9004
+Version: 0.0.0.9005
 Authors@R: c(
     person("Joshua", "Kunst", email = "jbkunst@gmail.com", role = c("aut", "cre")),
     person("William", "Dean", role = c("ctb", "cph"),

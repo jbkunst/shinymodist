@@ -94,7 +94,14 @@ ui <- bslib::page_sidebar(
   ),
   do.call(
     bslib::layout_columns,
-    c(cards, list(col_widths = c(4, 4, 4)))
+    c(
+      cards,
+      list(
+        col_widths = c(4, 4, 4),
+        fill = FALSE,
+        fillable = FALSE
+      )
+    )
   )
 )
 

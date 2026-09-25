@@ -5,9 +5,15 @@ if (!requireNamespace("bslib", quietly = TRUE)) {
   stop("Install bslib to run this example.")
 }
 
-observations <- c(
-  1.8, 0.9, 1.4, 1.2, 1.6, 0.8,
-  1.1, 1.5, 1.0, 1.3, 1.7, 0.7
+observations <- mtcars$mpg
+
+prior_color <- "#67AEBB"
+posterior_color <- "#0E7490"
+data_color <- "#D9A441"
+
+theme <- bslib::bs_theme(
+  version = 5,
+  primary = posterior_color
 )
 
 inverse_gamma_density <- function(x, alpha, beta) {
@@ -34,43 +40,45 @@ trapezoid_weights <- function(x) {
 }
 
 ui <- bslib::page_sidebar(
-  title = "Bayesian normal model",
+  title = "Bayesian normal model · mtcars MPG",
+  theme = theme,
   sidebar = bslib::sidebar(
     width = 360,
-    h5("Prior for the mean"),
+    h5("Prior for mean MPG"),
     modist_input(
       "mu_prior",
       family = "normal",
-      value = list(mu = 0, sigma = 1.25),
-      domain = c(-4, 4)
+      value = list(mu = 20, sigma = 5),
+      domain = c(5, 35)
     ),
     hr(),
-    h5("Prior for the variance"),
+    h5("Prior for MPG variance"),
     modist_input(
       "variance_prior",
       family = "inversegamma",
-      value = list(alpha = 3, beta = 1),
-      domain = c(0, 3)
+      value = list(alpha = 5, beta = 120),
+      domain = c(0, 100)
     ),
     hr(),
     div(
       style = "max-width: 220px;",
       sliderInput(
         "n_obs",
-        "Observed data",
-        min = 1,
+        "Cars observed",
+        min = 2,
         max = length(observations),
-        value = 4,
+        value = 6,
         step = 1,
         ticks = FALSE,
         width = "100%"
       )
     ),
-    textOutput("data_summary")
+    textOutput("data_summary"),
+    tags$small(class = "text-body-secondary", "Data: mtcars$mpg")
   ),
   bslib::card(
     fill = FALSE,
-    bslib::card_header("Mean: prior → posterior"),
+    bslib::card_header("Mean MPG: prior → posterior"),
     plotOutput("mu_plot", height = "280px")
   ),
   bslib::card(
@@ -112,8 +120,8 @@ server <- function(input, output, session) {
         variance_prior$alpha,
         variance_prior$beta
       ),
-      3 * stats::var(c(y, mean(y) + 0.1)),
-      0.5
+      3 * stats::var(y),
+      1
     )
     variance_grid <- exp(
       seq(log(var_lo), log(var_hi), length.out = 160)
@@ -191,69 +199,132 @@ server <- function(input, output, session) {
     y <- observations[seq_len(input$n_obs)]
 
     sprintf(
-      "n = %d · mean = %.2f · sd = %.2f",
+      "n = %d · mean = %.1f MPG · sd = %.1f",
       length(y),
       mean(y),
-      if (length(y) > 1) sd(y) else 0
+      sd(y)
     )
   })
 
   output$mu_plot <- renderPlot({
     post <- posterior()
+    y_max <- max(post$prior_mu, post$posterior_mu)
 
     plot(
       post$mu_grid,
       post$prior_mu,
-      type = "l",
-      lwd = 2,
-      lty = 2,
+      type = "n",
       xlab = expression(mu),
       ylab = "Density",
-      ylim = c(0, max(post$prior_mu, post$posterior_mu)),
+      ylim = c(0, y_max * 1.05),
       bty = "n"
+    )
+
+    polygon(
+      c(post$mu_grid[[1]], post$mu_grid, post$mu_grid[[length(post$mu_grid)]]),
+      c(0, post$prior_mu, 0),
+      border = NA,
+      col = grDevices::adjustcolor(prior_color, alpha.f = 0.16)
+    )
+    polygon(
+      c(post$mu_grid[[1]], post$mu_grid, post$mu_grid[[length(post$mu_grid)]]),
+      c(0, post$posterior_mu, 0),
+      border = NA,
+      col = grDevices::adjustcolor(posterior_color, alpha.f = 0.20)
+    )
+
+    lines(
+      post$mu_grid,
+      post$prior_mu,
+      col = prior_color,
+      lwd = 2,
+      lty = 2
     )
     lines(
       post$mu_grid,
       post$posterior_mu,
+      col = posterior_color,
       lwd = 3
     )
-    rug(post$y)
+    abline(
+      v = mean(post$y),
+      col = data_color,
+      lty = 3,
+      lwd = 2
+    )
+    rug(post$y, col = data_color)
+
     legend(
       "topright",
-      legend = c("Prior", "Posterior"),
-      lty = c(2, 1),
-      lwd = c(2, 3),
+      legend = c("Prior", "Posterior", "Sample mean"),
+      col = c(prior_color, posterior_color, data_color),
+      lty = c(2, 1, 3),
+      lwd = c(2, 3, 2),
       bty = "n"
     )
   })
 
   output$variance_plot <- renderPlot({
     post <- posterior()
+    y_max <- max(post$prior_variance, post$posterior_variance)
 
     plot(
       post$variance_grid,
       post$prior_variance,
-      type = "l",
-      lwd = 2,
-      lty = 2,
+      type = "n",
       xlab = expression(sigma^2),
       ylab = "Density",
-      ylim = c(
-        0,
-        max(post$prior_variance, post$posterior_variance)
-      ),
+      ylim = c(0, y_max * 1.05),
       bty = "n"
+    )
+
+    polygon(
+      c(
+        post$variance_grid[[1]],
+        post$variance_grid,
+        post$variance_grid[[length(post$variance_grid)]]
+      ),
+      c(0, post$prior_variance, 0),
+      border = NA,
+      col = grDevices::adjustcolor(prior_color, alpha.f = 0.16)
+    )
+    polygon(
+      c(
+        post$variance_grid[[1]],
+        post$variance_grid,
+        post$variance_grid[[length(post$variance_grid)]]
+      ),
+      c(0, post$posterior_variance, 0),
+      border = NA,
+      col = grDevices::adjustcolor(posterior_color, alpha.f = 0.20)
+    )
+
+    lines(
+      post$variance_grid,
+      post$prior_variance,
+      col = prior_color,
+      lwd = 2,
+      lty = 2
     )
     lines(
       post$variance_grid,
       post$posterior_variance,
+      col = posterior_color,
       lwd = 3
     )
+    abline(
+      v = stats::var(post$y),
+      col = data_color,
+      lty = 3,
+      lwd = 2
+    )
+
     legend(
       "topright",
-      legend = c("Prior", "Posterior"),
-      lty = c(2, 1),
-      lwd = c(2, 3),
+      legend = c("Prior", "Posterior", "Sample variance"),
+      col = c(prior_color, posterior_color, data_color),
+      lty = c(2, 1, 3),
+      lwd = c(2, 3, 2),
       bty = "n"
     )
   })

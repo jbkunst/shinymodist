@@ -16,11 +16,8 @@ ui <- bslib::page_sidebar(
     ),
     sliderInput("n", "Trials", min = 1, max = 100, value = 20),
     sliderInput("x", "Successes", min = 0, max = 20, value = 12),
-    bslib::card(
-      fill = FALSE,
-      bslib::card_header("Posterior parameters"),
-      verbatimTextOutput("posterior")
-    )
+    h5("Posterior parameters"),
+    verbatimTextOutput("posterior")
   ),
   bslib::card(
     bslib::card_header("Prior and posterior"),
@@ -51,11 +48,7 @@ server <- function(input, output, session) {
   })
 
   output$posterior <- renderPrint({
-    post <- posterior()
-    c(
-      posterior_alpha = post$alpha,
-      posterior_beta = post$beta
-    )
+    str(posterior())
   })
 
   output$plot <- renderPlot({

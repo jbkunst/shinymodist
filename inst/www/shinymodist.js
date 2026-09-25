@@ -39,6 +39,18 @@
     }
   }
 
+  function applyMinimalLabels(el, config) {
+    if ((config.style || "minimal") !== "minimal" || config.family !== "normal") {
+      return;
+    }
+
+    el.querySelectorAll(".mlabeltxt").forEach(function (label) {
+      if (label.textContent.trim().toLowerCase() === "mean") {
+        label.textContent = "μ";
+      }
+    });
+  }
+
   function mount(el) {
     if (el._shinymodist) return;
 
@@ -60,6 +72,7 @@
       : {};
 
     const instance = factory(target, config.value || {}, options);
+    applyMinimalLabels(el, config);
 
     el._shinymodist = instance;
     el._shinymodistFamily = config.family;
@@ -69,6 +82,7 @@
     };
 
     instance.onChange(function (params) {
+      applyMinimalLabels(el, config);
       el._shinymodistValue = {
         family: config.family,
         ...params,
@@ -122,6 +136,7 @@
             family: el._shinymodistFamily,
             ...el._shinymodist.params,
           };
+          applyMinimalLabels(el, readConfig(el));
         } finally {
           el._shinymodistServerUpdate = false;
         }

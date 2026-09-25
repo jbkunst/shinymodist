@@ -127,17 +127,7 @@
  * Container queries keep on-screen labels roughly legible without exposing
  * font-size knobs in the R API.
  */
-@container (max-width: 260px) {
-  .shinymodist-input[data-style="minimal"] .mtick {
-    font-size: 30px;
-  }
-
-  .shinymodist-input[data-style="minimal"] .mlabeltxt {
-    font-size: 38px;
-  }
-}
-
-@container (min-width: 261px) and (max-width: 360px) {
+@container (max-width: 360px) {
   .shinymodist-input[data-style="minimal"] .mtick {
     font-size: 24px;
   }

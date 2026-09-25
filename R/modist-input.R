@@ -110,7 +110,7 @@ update_modist_input <- function(
 shinymodist_dependency <- function() {
   htmltools::htmlDependency(
     name = "shinymodist",
-    version = "0.0.0.9003",
+    version = as.character(utils::packageVersion("shinymodist")),
     src = c(file = "www"),
     package = "shinymodist",
     script = c("modist.js", "shinymodist.js"),
