@@ -39,6 +39,7 @@ family_label <- function(x) {
 cards <- lapply(families, function(family) {
   bslib::card(
     fill = TRUE,
+    class = "gallery-card",
     bslib::card_header(family_label(family)),
     modist_input(
       paste0("dist_", family),
@@ -56,8 +57,22 @@ theme <- bslib::bs_theme(
 ui <- bslib::page_fillable(
   title = "shinymodist gallery",
   theme = theme,
-  padding = 0,
+  padding = "0.45rem",
   gap = 0,
+  tags$head(
+    tags$style(HTML("
+      .gallery-card {
+        border-radius: 0.4rem;
+      }
+
+      .gallery-card > .card-header {
+        padding: 0.35rem 0.55rem;
+        font-size: 0.85rem;
+        font-weight: 500;
+        line-height: 1.15;
+      }
+    "))
+  ),
   do.call(
     bslib::layout_column_wrap,
     c(
@@ -68,7 +83,7 @@ ui <- bslib::page_fillable(
         fill = TRUE,
         fillable = TRUE,
         height = "100%",
-        gap = 0
+        gap = "0.45rem"
       )
     )
   )

@@ -183,7 +183,8 @@ Initial examples, in this order:
    - Show every supported upstream distribution and nothing else.
    - Use `bslib::layout_column_wrap(width = 1 / 4)` as a fillable 4-column grid; with 15 families the final cell remains empty.
    - Use bslib so minimal style visibly inherits the theme primary color.
-   - Use zero grid gap so the gallery reads as one compact distribution matrix.
+   - Use a small grid gap and page padding so card borders do not visually intersect.
+   - Keep gallery cards compact: mildly rounded corners and light, low-padding headers.
    - Let each input fill its card height. Keep narrow-sidebar and style-comparison
      testing outside the gallery.
 
