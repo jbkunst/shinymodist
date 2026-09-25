@@ -1,9 +1,40 @@
 url: https://jkunst.com/shinymodist/
 
+authors:
+  Joshua Kunst:
+    href: https://jkunst.com
+
 template:
+  includes:
+    in_header: |
+      <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-ECZ9XLT78C"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ECZ9XLT78C');
+      </script>
   bootstrap: 5
+  bslib:
+    primary: "#0E7490"
+    secondary: "#0F172A"
+    link-color: "#0E7490"
+    border-radius: 0.6rem
+    btn-border-radius: 0.35rem
+    base_font:
+      google: "IBM Plex Sans"
+    heading_font:
+      google: "IBM Plex Sans"
+    code_font:
+      google: "Fira Mono"
+    headings-color: "#0F172A"
+    headings-line-height: 1.2
+    headings-margin-bottom: 0.75rem
 
 navbar:
+  bg: secondary
+  type: dark
   structure:
     left: [intro, reference, articles]
     right: [search, github]
