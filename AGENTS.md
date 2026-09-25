@@ -236,3 +236,11 @@ An htmlwidget is not currently required.
 Consider it only if there is a demonstrated need to use the component outside Shiny, for example in static Quarto or R Markdown output.
 
 Do not build an htmlwidget merely for completeness.
+
+
+## Homepage live demo
+
+The pkgdown index embeds the `normal-priors` Shinylive example. It intentionally
+uses two different distribution inputs: Normal for the mean and Inverse-Gamma
+for the variance, with an implied prior-predictive density. Keep this example
+compact and browser-friendly because it is part of the landing page.

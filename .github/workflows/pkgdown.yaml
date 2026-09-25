@@ -97,7 +97,8 @@ jobs:
             basic = "Basic input",
             gallery = "Distribution gallery",
             roc = "ROC curve",
-            "bayes-beta-binomial" = "Beta-Binomial prior elicitation"
+            "bayes-beta-binomial" = "Beta-Binomial prior elicitation",
+            "normal-priors" = "Bayesian normal model"
           )
 
           dir.create("docs/demos", recursive = TRUE, showWarnings = FALSE)

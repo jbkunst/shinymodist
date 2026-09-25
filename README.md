@@ -4,6 +4,20 @@ A lightweight Shiny input wrapper around [modist](https://github.com/williambdea
 
 `shinymodist` keeps the default presentation compact and low-noise, while retaining an opt-in `style = "modist"` mode close to the upstream experience.
 
+
+## Try it live
+
+The two inputs below define priors for a simple Bayesian Normal model: a Normal
+prior for the mean and an Inverse-Gamma prior for the variance. Drag either
+distribution to update the implied prior predictive distribution.
+
+<iframe
+  src="https://jkunst.com/shinymodist/demos/normal-priors/"
+  title="Bayesian normal model with shinymodist"
+  style="width: 100%; height: 620px; border: 1px solid #dee2e6; border-radius: 0.75rem;"
+></iframe>
+
+
 ## Install
 
 ```r
@@ -93,10 +107,9 @@ entirely in the browser with webR:
 - [Distribution gallery](https://jkunst.com/shinymodist/demos/gallery/)
 - [ROC curve](https://jkunst.com/shinymodist/demos/roc/)
 - [Beta-Binomial](https://jkunst.com/shinymodist/demos/bayes-beta-binomial/)
+- [Bayesian normal model](https://jkunst.com/shinymodist/demos/normal-priors/)
 
-A rolling `dev` GitHub prerelease carries the WebAssembly library image for
-the current `main` branch. This lets the site exercise the latest package
-without requiring a local clone.
+The live examples run entirely in the browser with Shinylive and webR.
 
 ## Distribution families
 
@@ -113,16 +126,8 @@ for a compact grid plus narrow-sidebar examples.
 
 ## WebAssembly and Shinylive
 
-WebAssembly compatibility is treated as a supported deployment target. Every
-push is checked with the r-wasm toolchain. Package releases also build a webR
-filesystem image so the package can be bundled by Shinylive without compiling
-R packages in the browser.
-
-The pkgdown workflow exports the runnable examples with Shinylive using the
-rolling WebAssembly `dev` release. Stable GitHub releases keep their own
-immutable WebAssembly library images.
-
-Documentation: <https://jkunst.com/shinymodist/>
+The examples can run entirely in the browser with Shinylive and webR.
+WebAssembly compatibility is checked in CI and supported in package releases.
 
 ## Credits
 
