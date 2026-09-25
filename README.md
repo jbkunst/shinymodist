@@ -152,7 +152,7 @@ The wrapper exposes all distribution families bundled by modist:
 - Inverse Gamma and Kumaraswamy
 
 All families use the same `modist_input()` API. See the distribution gallery
-for a compact grid plus narrow-sidebar examples.
+for a compact fillable grid of every supported family.
 
 ## WebAssembly and Shinylive
 

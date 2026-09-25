@@ -38,14 +38,12 @@ family_label <- function(x) {
 
 cards <- lapply(families, function(family) {
   bslib::card(
-    fill = FALSE,
-    wrapper = function(...) {
-      bslib::card_body(..., fillable = FALSE, fill = FALSE)
-    },
+    fill = TRUE,
     bslib::card_header(family_label(family)),
     modist_input(
       paste0("dist_", family),
-      family = family
+      family = family,
+      height = "100%"
     )
   )
 })
@@ -55,51 +53,21 @@ theme <- bslib::bs_theme(
   primary = "#6f42c1"
 )
 
-ui <- bslib::page_sidebar(
+ui <- bslib::page_fillable(
   title = "shinymodist gallery",
   theme = theme,
-  sidebar = bslib::sidebar(
-    width = 300,
-    h5("Narrow sidebar"),
-    p("Same input at sidebar width."),
-    modist_input(
-      "sidebar_normal",
-      family = "normal",
-      value = list(mu = 0, sigma = 1),
-      domain = c(-4, 4)
-    ),
-    hr(),
-    h5("Fixed height"),
-    p("Optional height for constrained layouts."),
-    modist_input(
-      "sidebar_fixed",
-      family = "normal",
-      value = list(mu = 0, sigma = 1),
-      domain = c(-4, 4),
-      height = "180px"
-    ),
-    hr(),
-    h5("Original modist"),
-    modist_input(
-      "sidebar_modist",
-      family = "normal",
-      value = list(mu = 0, sigma = 1),
-      style = "modist",
-      domain = c(-4, 4)
-    )
-  ),
-  p(
-    "All upstream modist families using the default minimal style. ",
-    "Labels adapt to narrow containers; the component height follows its available width."
-  ),
+  padding = 0,
+  gap = 0,
   do.call(
     bslib::layout_columns,
     c(
       cards,
       list(
-        col_widths = c(4, 4, 4),
-        fill = FALSE,
-        fillable = FALSE
+        col_widths = 3,
+        row_heights = rep(1, 4),
+        gap = 0,
+        fill = TRUE,
+        fillable = TRUE
       )
     )
   )
