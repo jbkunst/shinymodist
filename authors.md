@@ -2,7 +2,7 @@
 
 ## Authors
 
-- **Joshua Kunst**. Author, maintainer.
+- **[Joshua Kunst](https://jkunst.com)**. Author, maintainer.
 
 - **William Dean**. Contributor, copyright holder.  
   Author of the bundled modist JavaScript library
