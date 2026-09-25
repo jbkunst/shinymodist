@@ -30,10 +30,11 @@ priors:
 \\ p(\mu, \sigma^2 \mid y) \propto p(y \mid \mu, \sigma^2)\\ p(\mu)\\
 p(\sigma^2). \\
 
-Drag either prior below, then reveal more observations. The two panels
-show how each marginal posterior moves away from — or stays close to —
-the prior. The posterior is evaluated on a small deterministic grid,
-keeping the example dependency-free and easy to inspect.
+Drag either prior below, then reveal more real observations from
+`mtcars$mpg`. The two panels show how each marginal posterior moves away
+from — or stays close to — the prior. The posterior is evaluated on a
+small deterministic grid, keeping the example dependency-free and easy
+to inspect.
 
 ## Install
 
