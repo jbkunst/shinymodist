@@ -106,7 +106,10 @@
         family: config.family,
         ...params,
       };
-      window.jQuery(el).trigger("shinymodist:change");
+      window.jQuery(el).trigger(
+        "shinymodist:change",
+        [Boolean(el._shinymodistServerUpdate)]
+      );
     });
   }
 
@@ -127,11 +130,12 @@
     },
 
     subscribe: function (el, callback) {
-      window.jQuery(el).on("shinymodist:change.shinymodist", function () {
-        if (!el._shinymodistServerUpdate) {
-          callback(true);
+      window.jQuery(el).on(
+        "shinymodist:change.shinymodist",
+        function (event, fromServer) {
+          callback(!fromServer);
         }
-      });
+      );
     },
 
     getRatePolicy: function () {

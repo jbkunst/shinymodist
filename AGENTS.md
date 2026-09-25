@@ -35,7 +35,8 @@ update_modist_input() updates parameter values from the server.
 User drags should be debounced before reaching Shiny. Match Shiny's native
 slider/text-input convention with a 250 ms debounce. Rendering inside the
 browser remains immediate. Server-side updates should update the browser
-immediately without bouncing the same change back to the server.
+immediately and notify Shiny of the resulting input value once, matching native
+Shiny inputs so reactive dependents stay synchronized.
 
 Do not build an htmlwidget in the first version.
 
